@@ -12,11 +12,11 @@ export function Footer() {
           <div className="flex items-center gap-2">
             <Link href="/">
               <Image
-                src="/logo.png"
+                src="/logo-removebg.png"
                 alt="PT Jaringan Multimedia Cirebon Logo"
                 width={120}
                 height={36}
-                className="h-9 w-auto object-contain brightness-0 invert"
+                className="h-9 w-auto object-contain"
               />
             </Link>
           </div>

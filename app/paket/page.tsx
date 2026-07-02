@@ -13,6 +13,9 @@ import {
   House,
   ArrowRight,
   Info,
+  Ticket,
+  Storefront,
+  Timer,
 } from "@phosphor-icons/react";
 
 export default function PaketPage() {
@@ -294,6 +297,145 @@ export default function PaketPage() {
                 >
                   <WhatsappLogo size={16} weight="fill" className="text-emerald-600" />
                   <span>Daftar Sekarang via WhatsApp</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Voucher Hotspot & Reseller Section */}
+      <section className="py-20 bg-white border-b border-slate-100">
+        <div className="max-w-7xl mx-auto px-6 space-y-12">
+          <div className="max-w-3xl space-y-3">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-dark/10 border border-brand-dark/20 text-xs font-bold text-brand-dark uppercase tracking-wider">
+              <Ticket size={16} weight="fill" className="text-brand-dark" />
+              <span>Akses Hotspot SGC Network</span>
+            </div>
+            <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight leading-tight">
+              Voucher Wi-Fi Hotspot & Peluang Reseller
+            </h2>
+            <p className="text-slate-600 text-base leading-relaxed">
+              Dapatkan internet super cepat per 8 jam untuk kebutuhan instan Anda, atau jadilah Mitra Reseller SGC Network di lingkungan Anda dengan modal sangat ringan.
+            </p>
+          </div>
+
+          <div className="grid gap-8 md:grid-cols-2">
+            {/* Voucher Eceran */}
+            <div className="bg-white rounded-3xl border border-slate-200/80 p-8 flex flex-col justify-between relative shadow-sm hover:shadow-md transition-all hover:-translate-y-1 group">
+              <div className="space-y-6">
+                <div className="flex items-start justify-between">
+                  <div>
+                    <span className="text-[10px] font-extrabold uppercase tracking-widest text-slate-500 bg-slate-100 px-3 py-1 rounded-full border border-slate-200/60">
+                      Pengguna Langsung
+                    </span>
+                    <h3 className="text-2xl font-bold text-slate-900 mt-3">Voucher Eceran (8 Jam)</h3>
+                    <p className="text-slate-500 text-xs mt-1">
+                      Koneksi cepat tanpa ikatan kontrak bulanan.
+                    </p>
+                  </div>
+                  <div className="w-12 h-12 rounded-2xl bg-slate-100 border border-slate-200/60 flex items-center justify-center text-slate-700 group-hover:bg-brand-dark group-hover:text-white transition-colors">
+                    <Timer size={24} weight="bold" />
+                  </div>
+                </div>
+
+                <div className="flex flex-col gap-1.5 bg-slate-50 p-5 rounded-2xl border border-slate-200/60 shadow-sm">
+                  <div className="flex items-baseline gap-1.5">
+                    <span className="text-4xl font-extrabold text-slate-900">Rp 3.000</span>
+                    <span className="text-sm font-semibold text-slate-500">/ voucher</span>
+                  </div>
+                  <div className="text-xs font-medium text-slate-600 pt-2 border-t border-slate-200 mt-1 flex items-center gap-1.5">
+                    <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                    <span>Masa aktif: <strong>8 Jam</strong> sejak login pertama</span>
+                  </div>
+                </div>
+
+                <ul className="space-y-3 pt-2">
+                  <li className="flex items-start gap-2.5 text-xs text-slate-600 font-medium">
+                    <Check size={16} className="text-emerald-500 mt-0.5 shrink-0" weight="bold" />
+                    <span>Kecepatan tinggi stabil murni fiber optic</span>
+                  </li>
+                  <li className="flex items-start gap-2.5 text-xs text-slate-600 font-medium">
+                    <Check size={16} className="text-emerald-500 mt-0.5 shrink-0" weight="bold" />
+                    <span>Langsung login di seluruh titik area Hotspot SGC Network</span>
+                  </li>
+                  <li className="flex items-start gap-2.5 text-xs text-slate-600 font-medium">
+                    <Check size={16} className="text-emerald-500 mt-0.5 shrink-0" weight="bold" />
+                    <span>Tanpa syarat administrasi atau pemasangan router di rumah</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div className="pt-8">
+                <a
+                  href="https://wa.me/6285179997972?text=Halo%20JMCNET,%20saya%20tertarik%20untuk%20membeli%20Voucher%20Wi-Fi%20Hotspot%208%20Jam."
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full inline-flex h-11 items-center justify-center gap-2 rounded-xl bg-slate-100 border border-slate-200 text-xs font-bold text-slate-800 hover:bg-slate-200 transition-colors shadow-sm"
+                >
+                  <WhatsappLogo size={16} weight="fill" className="text-emerald-600" />
+                  <span>Beli Voucher Eceran via WhatsApp</span>
+                </a>
+              </div>
+            </div>
+
+            {/* Voucher Reseller */}
+            <div className="bg-white rounded-3xl border-2 border-brand-dark p-8 flex flex-col justify-between relative shadow-lg ring-4 ring-brand-dark/10 transition-all hover:-translate-y-1 group">
+              <div className="absolute -top-3.5 right-8 px-4 py-1 rounded-full bg-brand-dark text-[10px] font-extrabold tracking-widest text-white uppercase shadow-md">
+                Peluang Usaha
+              </div>
+              <div className="space-y-6">
+                <div className="flex items-start justify-between">
+                  <div>
+                    <span className="text-[10px] font-extrabold uppercase tracking-widest text-brand-dark bg-brand-dark/10 border border-brand-dark/20 px-3 py-1 rounded-full">
+                      Harga Mitra Grosir
+                    </span>
+                    <h3 className="text-2xl font-bold text-slate-900 mt-3">Paket Reseller Voucher</h3>
+                    <p className="text-slate-500 text-xs mt-1">
+                      Cocok untuk warung kopi, kafe, konter pulsa, &amp; pelajar.
+                    </p>
+                  </div>
+                  <div className="w-12 h-12 rounded-2xl bg-brand-dark/5 flex items-center justify-center text-brand-dark group-hover:scale-110 transition-transform">
+                    <Storefront size={24} weight="bold" />
+                  </div>
+                </div>
+
+                <div className="flex flex-col gap-1.5 bg-brand-dark/5 p-5 rounded-2xl border border-brand-dark/15">
+                  <div className="flex items-baseline gap-1.5">
+                    <span className="text-4xl font-extrabold text-slate-900">Rp 2.000</span>
+                    <span className="text-sm font-semibold text-slate-600">/ voucher</span>
+                  </div>
+                  <div className="text-xs text-slate-600 pt-2 border-t border-brand-dark/15 mt-1 flex justify-between items-center">
+                    <span>Minimal pembelian: <strong className="text-slate-900 font-bold">25 Voucher</strong></span>
+                    <span className="bg-brand-dark text-white px-2 py-0.5 rounded text-[10px] font-bold">Modal Rp 50.000</span>
+                  </div>
+                </div>
+
+                <ul className="space-y-3 pt-2">
+                  <li className="flex items-start gap-2.5 text-xs text-slate-600 font-medium">
+                    <Check size={16} className="text-emerald-500 mt-0.5 shrink-0" weight="bold" />
+                    <span>Keuntungan Rp 1.000/voucher (Harga jual eceran Rp 3.000)</span>
+                  </li>
+                  <li className="flex items-start gap-2.5 text-xs text-slate-600 font-medium">
+                    <Check size={16} className="text-emerald-500 mt-0.5 shrink-0" weight="bold" />
+                    <span>Masa aktif 8 jam baru dihitung saat kode digosok &amp; login</span>
+                  </li>
+                  <li className="flex items-start gap-2.5 text-xs text-slate-600 font-medium">
+                    <Check size={16} className="text-emerald-500 mt-0.5 shrink-0" weight="bold" />
+                    <span>Bebas risiko basi / hangus jika disimpan sebagai stok</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div className="pt-8">
+                <a
+                  href="https://wa.me/6285179997972?text=Halo%20JMCNET,%20saya%20tertarik%20untuk%20mendaftar%20jadi%20Mitra%20Reseller%20Voucher%20Wi-Fi%20(Min.%2025%20Voucher)."
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full inline-flex h-11 items-center justify-center gap-2 rounded-xl bg-brand-dark text-xs font-bold text-white hover:bg-brand-dark/95 transition-all shadow-lg shadow-brand-dark/20"
+                >
+                  <WhatsappLogo size={16} weight="fill" />
+                  <span>Daftar Reseller via WhatsApp</span>
                 </a>
               </div>
             </div>

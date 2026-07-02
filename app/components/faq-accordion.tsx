@@ -57,6 +57,11 @@ const faqs: FAQItem[] = [
     answer:
       "Caranya sangat mudah. Anda hanya perlu memilih paket yang diinginkan, kemudian klik tombol WhatsApp untuk terhubung langsung dengan tim sales kami. Kami akan mendata alamat Anda untuk survei lokasi dan penjadwalan instalasi.",
   },
+  {
+    question: "Apakah JMCNET menyediakan layanan Voucher Wi-Fi harian atau jam-jaman?",
+    answer:
+      "Ya! Kami menyediakan Voucher Wi-Fi Hotspot SGC Network dengan harga Rp 3.000/voucher untuk masa aktif 8 jam. Selain itu, kami juga membuka peluang usaha bagi Anda yang ingin menjadi Mitra Reseller (menjual kembali voucher) dengan harga grosir Rp 2.000/voucher (minimal pembelian 25 voucher).",
+  },
 ];
 
 export function FAQAccordion() {

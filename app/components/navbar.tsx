@@ -44,7 +44,7 @@ export function Navbar() {
           className="flex items-center gap-2 group transition-transform hover:scale-102"
         >
           <Image
-            src="/logo.png"
+            src="/logo-removebg.png"
             alt="PT Jaringan Multimedia Cirebon Logo"
             width={120}
             height={36}
