@@ -1,79 +1,82 @@
 "use client";
 
 import React from "react";
-import Image from "next/image";
-import { Speedometer } from "@phosphor-icons/react";
+import Link from "next/link";
 
 export function HeroSection() {
   return (
-    <section className="relative pt-24 pb-16 md:pt-28 md:pb-24 lg:pt-32 lg:pb-28 overflow-hidden min-h-[90dvh] flex items-center bg-slate-50/50">
-      <div className="max-w-7xl mx-auto px-6 grid gap-12 lg:grid-cols-12 items-center w-full">
-        {/* Left Text Column */}
-        <div className="lg:col-span-6 space-y-6 z-10">
-          <span className="text-[11px] font-mono font-bold tracking-[0.2em] text-brand-dark uppercase block">
-            PT Jaringan Multimedia Cirebon
-          </span>
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-black tracking-tighter text-slate-900 leading-none">
-            Internet Fiber <br className="hidden md:inline" />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-dark to-brand-light relative">
-              Cepat &amp; Tanpa Batas
-            </span>
-          </h1>
-          <p className="text-base md:text-lg text-slate-600 leading-relaxed max-w-[50ch]">
-            Hubungkan rumah dan bisnis Anda dengan koneksi internet fiber
-            optic paling stabil di wilayah Cirebon.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 pt-2">
-            <a
-              href="#kontak"
-              className="inline-flex h-12 items-center justify-center rounded-full bg-brand-dark px-6 text-sm font-bold text-white transition-all hover:bg-brand-dark/95 active:scale-98 shadow-md shadow-brand-dark/10"
-            >
-              Hubungi Kami
-            </a>
-            <a
-              href="#paket"
-              className="inline-flex h-12 items-center justify-center rounded-full bg-white border border-slate-200 px-6 text-sm font-semibold text-slate-700 transition-all hover:bg-slate-50 hover:border-slate-300 active:scale-98"
-            >
-              Lihat Paket
-            </a>
+    <section className="relative min-h-[calc(100vh-6.5rem)] pt-8 pb-8 md:pt-12 md:pb-12 bg-gradient-to-b from-slate-50 via-sky-50/40 to-white border-b border-slate-200/80 overflow-hidden flex flex-col">
+      {/* Subtle Corporate Grid / Dot Pattern */}
+      <div className="absolute inset-0 bg-grid-pattern pointer-events-none" />
+      <div className="absolute top-0 right-0 w-[600px] h-[400px] bg-gradient-to-bl from-blue-100/60 via-slate-100/20 to-transparent blur-3xl pointer-events-none" />
+      <div className="absolute bottom-0 left-1/3 w-[500px] h-[300px] bg-gradient-to-tr from-cyan-100/40 via-blue-50/20 to-transparent blur-3xl pointer-events-none" />
+
+      <div className="max-w-7xl mx-auto px-6 relative z-10 w-full flex-1 flex flex-col justify-between gap-12">
+        {/* Editorial / Swiss Architectural Layout - Centered Vertically */}
+        <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-end my-auto py-8">
+          {/* Main Title Column */}
+          <div className="lg:col-span-7 space-y-6">
+            <div className="flex flex-wrap items-center gap-x-3 gap-y-2 text-xs font-mono tracking-[0.2em] text-brand-dark uppercase">
+              <span className="w-6 h-[2px] bg-brand-dark" />
+              <span className="font-bold tracking-[0.25em]">PT Jaringan Multimedia Cirebon</span>
+              <span className="text-slate-400 font-light">//</span>
+              <span className="text-slate-500">100% Fiber Optic</span>
+            </div>
+            
+            <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight text-slate-900 leading-[1.05]">
+              Koneksi Internet <br />
+              <span className="text-brand-dark font-extrabold block sm:inline">Fiber Optic Murni.</span>
+            </h1>
+          </div>
+
+          {/* Description & CTA Column */}
+          <div className="lg:col-span-5 space-y-8 lg:pb-2">
+            <p className="text-base sm:text-lg text-slate-600 font-normal leading-relaxed max-w-md">
+              Jaringan backbone 100% fiber optic berkecepatan tinggi untuk hunian dan bisnis di Cirebon. Tanpa batas kuota (Unlimited), stabil, dan transparan.
+            </p>
+            
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 pt-2 w-full sm:w-auto">
+              <Link
+                href="#paket"
+                className="w-full sm:w-auto h-13 px-8 rounded-xl bg-brand-dark text-white font-bold text-sm tracking-wide hover:bg-brand-dark/90 transition-all flex items-center justify-center shadow-md shadow-brand-dark/15"
+              >
+                Lihat Pilihan Paket
+              </Link>
+              <Link
+                href="/kontak"
+                className="w-full sm:w-auto h-13 px-8 rounded-xl border border-slate-300 text-slate-800 font-semibold text-sm tracking-wide hover:border-slate-400 hover:bg-white transition-all flex items-center justify-center bg-white/80 shadow-sm"
+              >
+                Konsultasi Jaringan
+              </Link>
+            </div>
           </div>
         </div>
 
-        {/* Right Visual Column */}
-        <div className="lg:col-span-6 relative z-10 flex justify-center lg:justify-end">
-          <div className="relative w-full max-w-[500px] aspect-[4/3] rounded-3xl overflow-hidden border border-slate-200/80 shadow-xl bg-white p-2">
-            <div className="relative w-full h-full rounded-2xl overflow-hidden">
-              <Image
-                src="/images/hero_network.png"
-                alt="JMCNET Fiber Optic Jaringan"
-                fill
-                sizes="(max-w-7xl) 100vw, 500px"
-                priority
-                className="object-cover"
-              />
-              {/* Visual Glassmorphism overlay */}
-              <div className="absolute bottom-4 left-4 right-4 bg-white/70 backdrop-blur-md border border-white/20 p-4 rounded-xl shadow-lg flex items-center justify-between">
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-lg bg-brand-dark/10 flex items-center justify-center text-brand-dark">
-                    <Speedometer size={20} weight="bold" />
-                  </div>
-                  <div>
-                    <p className="text-xs text-slate-500 font-semibold leading-none">
-                      Kecepatan Maksimal
-                    </p>
-                    <p className="text-sm font-bold text-slate-800 mt-1">
-                      Hingga 56 Mbps
-                    </p>
-                  </div>
-                </div>
-                <div className="flex items-center gap-1.5">
-                  <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
-                  <span className="text-[11px] font-mono font-bold text-slate-700 uppercase">
-                    Jaringan Stabil
-                  </span>
-                </div>
-              </div>
-            </div>
+        {/* Technical Specs / Utilitarian Footer Bar - Docked at Bottom */}
+        <div className="w-full pt-6 border-t border-slate-200/80 grid grid-cols-2 md:grid-cols-4 gap-6 text-xs font-mono tracking-widest uppercase text-slate-500 mt-auto">
+          <div>
+            <span className="block text-slate-900 font-bold text-sm sm:text-base mb-1 tracking-normal font-sans">
+              100% FIBER
+            </span>
+            Infrastruktur Murni
+          </div>
+          <div>
+            <span className="block text-slate-900 font-bold text-sm sm:text-base mb-1 tracking-normal font-sans">
+              UNLIMITED
+            </span>
+            Tanpa Batasan FUP
+          </div>
+          <div>
+            <span className="block text-slate-900 font-bold text-sm sm:text-base mb-1 tracking-normal font-sans">
+              SIMETRIS
+            </span>
+            Download &amp; Upload Setara
+          </div>
+          <div>
+            <span className="block text-slate-900 font-bold text-sm sm:text-base mb-1 tracking-normal font-sans">
+              24/7 SUPPORT
+            </span>
+            Teknisi Lokal Cirebon
           </div>
         </div>
       </div>

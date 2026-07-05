@@ -1,18 +1,13 @@
 import React from "react";
 import type { Metadata } from "next";
-import { Navbar } from "./components/navbar";
 import { HeroSection } from "./components/sections/hero-section";
 import { StatsSection } from "./components/sections/stats-section";
-import { AboutSection } from "./components/sections/about-section";
 import { WhyChooseUsSection } from "./components/sections/why-choose-us-section";
-import { ParallaxSection } from "./components/parallax-section";
 import { PackagesSection } from "./components/sections/packages-section";
-import { TermsPaymentSection } from "./components/sections/terms-payment-section";
 import { HowItWorksSection } from "./components/sections/how-it-works-section";
 import { TestimonialsSection } from "./components/sections/testimonials-section";
 import { FaqSection } from "./components/sections/faq-section";
 import { ContactLocationSection } from "./components/sections/contact-location-section";
-import { Footer } from "./components/footer";
 
 export const metadata: Metadata = {
   title: "JMCNET - Provider Internet Cepat & Stabil 100% Fiber Optic Cirebon",
@@ -20,6 +15,12 @@ export const metadata: Metadata = {
     "PT Jaringan Multimedia Cirebon (JMCNET) adalah layanan provider internet WiFi fiber optic murni di Cirebon. Koneksi cepat, stabil, tanpa batas kuota (unlimited), mulai Rp 166.500/bulan.",
   alternates: {
     canonical: "https://jmcnet.id",
+  },
+  openGraph: {
+    title: "JMCNET - Provider Internet Cepat & Stabil 100% Fiber Optic Cirebon",
+    description:
+      "PT Jaringan Multimedia Cirebon (JMCNET) adalah layanan provider internet WiFi fiber optic murni di Cirebon. Koneksi cepat, stabil, tanpa batas kuota (unlimited), mulai Rp 166.500/bulan.",
+    url: "https://jmcnet.id",
   },
 };
 
@@ -29,47 +30,42 @@ const faqJsonLd = {
   mainEntity: [
     {
       "@type": "Question",
-      name: "Apakah ada FUP (Fair Usage Policy) pada paket JMCNET?",
+      name: "Apa itu JMCNET / SGC Network?",
       acceptedAnswer: {
         "@type": "Answer",
-        text:
-          "Tidak ada. Semua paket internet JMCNET bersifat Unlimited tanpa batasan kuota maupun penurunan kecepatan (Tanpa FUP). Anda bebas mendownload, streaming, dan berselancar sepuasnya kapan saja.",
+        text: "JMCNET (PT Jaringan Multimedia Cirebon) adalah penyedia layanan internet fiber optic murni (ISP) yang berkomitmen memberikan koneksi cepat, stabil, dan tanpa batas kuota (unlimited) di wilayah Cirebon dan sekitarnya.",
       },
     },
     {
       "@type": "Question",
-      name: "Berapa lama proses instalasi jaringan internet?",
+      name: "Apakah ada batasan kuota atau FUP?",
       acceptedAnswer: {
         "@type": "Answer",
-        text:
-          "Proses instalasi biasanya memakan waktu 1 sampai 3 hari kerja setelah pendaftaran disetujui. Tim teknisi profesional kami akan melakukan survei lokasi dan pemasangan kabel fiber optic secara cepat dan rapi.",
+        text: "Tidak ada! Seluruh paket internet fiber optic JMCNET 100% Unlimited tanpa batas kuota pemakaian wajar (FUP). Kecepatan Anda tidak akan pernah diturunkan meskipun pemakaian data sangat tinggi.",
       },
     },
     {
       "@type": "Question",
-      name: "Apa saja persyaratan dokumen untuk mendaftar berlangganan JMCNET?",
+      name: "Bagaimana cara mendaftar dan pasang WiFi JMCNET?",
       acceptedAnswer: {
         "@type": "Answer",
-        text:
-          "Calon pelanggan cukup melampirkan foto Kartu Tanda Pengenal (KTP) yang sah serta mengisi formulir pendaftaran berlangganan.",
+        text: "Pendaftaran sangat mudah. Anda bisa memilih paket di halaman website ini dan menekan tombol 'Daftar Sekarang' yang akan mengarahkan Anda langsung ke WhatsApp tim teknis/marketing kami. Setelah cek jangkauan lokasi, tim teknis akan segera melakukan instalasi ke rumah atau bisnis Anda.",
       },
     },
     {
       "@type": "Question",
-      name: "Bagaimana sistem pembayaran bulanan dan kapan jatuh temponya?",
+      name: "Apakah ada biaya instalasi atau sewa modem?",
       acceptedAnswer: {
         "@type": "Answer",
-        text:
-          "Sistem berlangganan bersifat PRABAYAR (pembayaran dilakukan di muka). Jatuh tempo pembayaran adalah setiap tanggal 1 (satu) setiap bulannya melalui transfer ke rekening resmi kami: Bank BRI 0107010045 - 39304 a.n. PT JARINGAN MULTIMEDIA CIREBON.",
+        text: "Untuk paket promo tertentu, kami memberikan fasilitas GRATIS biaya instalasi dan peminjaman modem ONT fiber optic selama berlangganan. Silakan hubungi admin kami untuk promo aktif bulan ini.",
       },
     },
     {
       "@type": "Question",
-      name: "Apakah modem router Wi-Fi dipinjamkan secara gratis?",
+      name: "Bagaimana jika terjadi kendala atau gangguan internet?",
       acceptedAnswer: {
         "@type": "Answer",
-        text:
-          "Ya, kami meminjamkan Fiber Modem ONT berkualitas secara gratis selama masa berlangganan. Biaya aktivasi Rp 150.000 merupakan biaya sewa pakai alat tersebut sekaligus instalasi kabel fiber.",
+        text: "JMCNET memiliki tim teknis lokal di Cirebon yang standby. Anda dapat menghubungi layanan pelanggan kami via WhatsApp atau telepon untuk penanganan kendala yang cepat dan responsif.",
       },
     },
   ],
@@ -82,48 +78,30 @@ export default function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
-      {/* 1. Header & Navigation */}
-      <Navbar />
 
-      {/* 2. Hero Section */}
+      {/* 1. Hero Section (Full-screen clean corporate without background image) */}
       <HeroSection />
 
-      {/* 3. Trusted By / Stats Section */}
-      <StatsSection />
-
-      {/* 4. About JMCNET Section */}
-      <AboutSection />
-
-      {/* 5. Why Choose Us Section */}
-      <WhyChooseUsSection />
-
-      {/* 6. Parallax Transition Section */}
-      <ParallaxSection
-        backgroundImage="/images/parallax_network.png"
-        headline="Menghubungkan Cirebon dengan Infrastruktur Tercepat"
-        subheadline="Jaringan backbone fiber optic murni JMCNET didukung teknologi termutakhir untuk performa digital terbaik tanpa hambatan."
-      />
-
-      {/* 7. Internet Packages Section */}
+      {/* 2. Internet Packages Section (Products & Pricing) */}
       <PackagesSection />
 
-      {/* 8. Terms & Payment Section */}
-      <TermsPaymentSection />
+      {/* 3. Why Choose Us Section (Core Competitive Advantages) */}
+      <WhyChooseUsSection />
 
-      {/* 9. How It Works Section */}
+      {/* 4. How It Works Section (3 Easy Steps to Connect) */}
       <HowItWorksSection />
 
-      {/* 10. Testimonials Section */}
+      {/* 5. Trusted By / Stats Section (Social Proof & Reliability) */}
+      <StatsSection />
+
+      {/* 6. Testimonials Section (Real Customer Reviews) */}
       <TestimonialsSection />
 
-      {/* 11. FAQ Section */}
+      {/* 7. FAQ Section (Answering Common Questions) */}
       <FaqSection />
 
-      {/* 12. Contact & Location Section */}
+      {/* 8. Contact & Location Section (Final CTA & Physical Office) */}
       <ContactLocationSection />
-
-      {/* 13. Footer Section */}
-      <Footer />
     </div>
   );
 }

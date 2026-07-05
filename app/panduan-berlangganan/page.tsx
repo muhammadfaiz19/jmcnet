@@ -2,8 +2,8 @@
 
 import React from "react";
 import Link from "next/link";
-import { Navbar } from "../components/navbar";
-import { Footer } from "../components/footer";
+import { PageHeader } from "../components/page-header";
+import { CtaCardSection } from "../components/cta-card-section";
 import {
   DownloadSimple,
   FileDoc,
@@ -14,31 +14,22 @@ import {
   ClipboardText,
   Wrench,
   WifiHigh,
+  WhatsappLogo,
 } from "@phosphor-icons/react";
 
 export default function PanduanBerlanggananPage() {
   return (
     <div className="flex-1 bg-white text-slate-900 font-sans selection:bg-brand-light/20 selection:text-brand-dark overflow-x-hidden">
-      <Navbar />
-
       {/* Hero Header */}
-      <section className="pt-32 pb-20 bg-slate-900 text-white relative overflow-hidden">
-        <div className="absolute top-1/2 left-1/3 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[320px] bg-brand-dark/20 blur-[150px] rounded-full pointer-events-none" />
-        <div className="max-w-7xl mx-auto px-6 relative z-10 text-center space-y-6">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-white/15 backdrop-blur-md text-xs font-semibold tracking-wide uppercase text-brand-light">
-            Panduan &amp; Administrasi
-          </div>
-          <h1 className="text-4xl md:text-6xl font-black tracking-tight leading-tight max-w-4xl mx-auto">
-            Panduan Berlangganan &amp; <span className="text-brand-light">Dokumen Resmi</span>
-          </h1>
-          <p className="text-slate-300 text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
-            Semua informasi mengenai prosedur pendaftaran, pengunduhan kontrak berkas resmi SGC Network, hingga tata cara pembayaran bulanan.
-          </p>
-        </div>
-      </section>
+      <PageHeader
+        eyebrow="PANDUAN & ADMINISTRASI"
+        title="Panduan Berlangganan &"
+        highlight="Dokumen Resmi."
+        subtitle="Semua informasi mengenai prosedur pendaftaran, pengunduhan kontrak berkas resmi SGC Network, hingga tata cara pembayaran bulanan."
+      />
 
       {/* 3 Langkah Mudah Walkthrough */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-gradient-to-b from-slate-50 via-sky-50/30 to-white relative">
         <div className="max-w-7xl mx-auto px-6 space-y-16">
           <div className="max-w-3xl space-y-4">
             <span className="text-xs font-mono font-bold tracking-[0.2em] text-brand-dark uppercase block">
@@ -102,7 +93,7 @@ export default function PanduanBerlanggananPage() {
       </section>
 
       {/* Unduhan Dokumen Resmi Section */}
-      <section className="py-20 bg-slate-50 border-y border-slate-100">
+      <section className="py-20 bg-white border-y border-slate-100 relative">
         <div className="max-w-7xl mx-auto px-6 space-y-12">
           <div className="text-center max-w-3xl mx-auto space-y-4">
             <span className="text-xs font-mono font-bold tracking-[0.2em] text-brand-dark uppercase block">
@@ -160,7 +151,7 @@ export default function PanduanBerlanggananPage() {
               <a
                 href="/KONTRAK BERLANGGANAN LAYANAN SGC NETWORK.docx"
                 download="KONTRAK BERLANGGANAN LAYANAN SGC NETWORK.docx"
-                className="w-full inline-flex h-12 items-center justify-center gap-2.5 rounded-xl bg-slate-900 text-sm font-bold text-white hover:bg-slate-800 shadow-md transition-all"
+                className="w-full inline-flex h-12 items-center justify-center gap-2.5 rounded-xl bg-brand-dark text-sm font-bold text-white hover:bg-brand-dark/95 shadow-md shadow-brand-dark/15 transition-all"
               >
                 <DownloadSimple size={20} weight="bold" />
                 <span>Unduh Kontrak DOCX</span>
@@ -171,7 +162,7 @@ export default function PanduanBerlanggananPage() {
       </section>
 
       {/* Syarat & Ketentuan Lengkap */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-gradient-to-tr from-slate-50 via-indigo-50/20 to-slate-50 relative">
         <div className="max-w-7xl mx-auto px-6 grid gap-12 lg:grid-cols-12">
           <div className="lg:col-span-7 space-y-6">
             <span className="text-xs font-mono font-bold tracking-[0.2em] text-brand-dark uppercase block">
@@ -271,7 +262,26 @@ export default function PanduanBerlanggananPage() {
         </div>
       </section>
 
-      <Footer />
+      {/* Bottom CTA Card */}
+      <CtaCardSection
+        eyebrow="Bantuan Registrasi"
+        title="Siap Mengajukan Pemasangan Baru?"
+        description="Unduh formulir atau langsung hubungi tim customer service kami via WhatsApp untuk pemeriksaan jangkauan jaringan di lokasi Anda."
+        actions={[
+          {
+            label: "Daftar Langsung via WA",
+            href: "https://wa.me/6285179997972",
+            isExternal: true,
+            icon: <WhatsappLogo size={18} weight="fill" className="text-emerald-600" />,
+            variant: "primary",
+          },
+          {
+            label: "Lihat Pilihan Paket",
+            href: "/paket",
+            variant: "secondary",
+          },
+        ]}
+      />
     </div>
   );
 }
