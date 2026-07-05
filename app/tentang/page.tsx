@@ -3,8 +3,8 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Navbar } from "../components/navbar";
-import { Footer } from "../components/footer";
+import { PageHeader } from "../components/page-header";
+import { CtaCardSection } from "../components/cta-card-section";
 import {
   Target,
   Eye,
@@ -19,27 +19,16 @@ import {
 export default function TentangPage() {
   return (
     <div className="flex-1 bg-white text-slate-900 font-sans selection:bg-brand-light/20 selection:text-brand-dark overflow-x-hidden">
-      <Navbar />
-
       {/* Hero Header */}
-      <section className="pt-32 pb-20 bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900 text-white relative overflow-hidden">
-        {/* Glow effects */}
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-brand-dark/20 blur-[140px] rounded-full pointer-events-none" />
-        <div className="max-w-7xl mx-auto px-6 relative z-10 text-center space-y-6">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-white/15 backdrop-blur-md text-xs font-semibold tracking-wide uppercase text-brand-light">
-            Tentang Perusahaan
-          </div>
-          <h1 className="text-4xl md:text-6xl font-black tracking-tight leading-tight max-w-4xl mx-auto">
-            Dedikasi Menghubungkan <span className="text-brand-light">Cirebon</span> Tanpa Batas
-          </h1>
-          <p className="text-slate-300 text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
-            PT Jaringan Multimedia Cirebon (JMCNET / SGC Network) hadir sebagai pelopor infrastruktur fiber optik murni dengan komitmen pelayanan cepat, stabil, dan transparan.
-          </p>
-        </div>
-      </section>
+      <PageHeader
+        eyebrow="TENTANG PERUSAHAAN"
+        title="Dedikasi Menghubungkan"
+        highlight="Cirebon Tanpa Batas."
+        subtitle="PT Jaringan Multimedia Cirebon (JMCNET / SGC Network) hadir sebagai pelopor infrastruktur fiber optik murni dengan komitmen pelayanan cepat, stabil, dan transparan."
+      />
 
       {/* Visi & Misi */}
-      <section className="py-20 bg-slate-50 border-y border-slate-100">
+      <section className="py-20 bg-gradient-to-b from-slate-50 via-sky-50/30 to-white border-y border-slate-100 relative">
         <div className="max-w-7xl mx-auto px-6 grid gap-12 lg:grid-cols-2 items-stretch">
           {/* Visi Card */}
           <div className="bg-white p-10 rounded-3xl border border-slate-200/80 shadow-sm flex flex-col justify-between space-y-6 relative overflow-hidden group hover:border-brand-dark/40 transition-colors">
@@ -91,7 +80,7 @@ export default function TentangPage() {
       </section>
 
       {/* Story & Visual Grid */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-white relative">
         <div className="max-w-7xl mx-auto px-6 grid gap-12 lg:grid-cols-12 items-center">
           <div className="lg:col-span-6 space-y-6">
             <span className="text-xs font-mono font-bold tracking-[0.2em] text-brand-dark uppercase block">
@@ -133,96 +122,90 @@ export default function TentangPage() {
       </section>
 
       {/* Nilai-Nilai Utama */}
-      <section className="py-20 bg-slate-900 text-white border-t border-slate-800">
+      <section className="py-20 bg-gradient-to-br from-brand-dark/5 via-sky-50/50 to-slate-50 border-y border-brand-dark/10 relative">
         <div className="max-w-7xl mx-auto px-6 space-y-12">
-          <div className="text-center max-w-3xl mx-auto space-y-4">
-            <span className="text-xs font-mono font-bold tracking-[0.2em] text-brand-light uppercase block">
-              Pilar Utama Kami
-            </span>
-            <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight">
+          <div className="text-center max-w-3xl mx-auto space-y-3">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-dark/10 border border-brand-dark/20 text-xs font-bold text-brand-dark uppercase tracking-wider">
+              <span>Pilar Utama Kami</span>
+            </div>
+            <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight text-slate-900">
               Mengapa Kami Berbeda
             </h2>
-            <p className="text-slate-400 text-base">
+            <p className="text-slate-600 text-base">
               Empat nilai dasar yang kami junjung tinggi dalam setiap koneksi yang kami pasang ke rumah Anda.
             </p>
           </div>
 
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-            <div className="p-7 rounded-3xl bg-slate-800/80 border border-slate-700/60 space-y-4">
-              <div className="w-12 h-12 rounded-2xl bg-brand-dark/20 text-brand-light flex items-center justify-center">
-                <Lightning size={24} weight="fill" />
+            <div className="bg-white p-8 rounded-3xl border border-slate-200/80 shadow-sm hover:shadow-md hover:border-brand-dark/40 transition-all group space-y-5 flex flex-col justify-between">
+              <div className="space-y-4">
+                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-brand-dark to-brand-light text-white flex items-center justify-center shadow-md shadow-brand-light/20 group-hover:scale-105 transition-transform">
+                  <Lightning size={26} weight="fill" />
+                </div>
+                <h3 className="text-lg font-bold text-slate-900">Stabilitas Murni</h3>
+                <p className="text-slate-600 text-xs md:text-sm leading-relaxed">
+                  Tanpa penurunan kecepatan di jam sibuk berkat manajemen kapasitas bandwidth yang proporsional.
+                </p>
               </div>
-              <h3 className="text-lg font-bold">Stabilitas Murni</h3>
-              <p className="text-slate-400 text-xs leading-relaxed">
-                Tanpa penurunan kecepatan di jam sibuk berkat manajemen kapasitas bandwidth yang proporsional.
-              </p>
             </div>
 
-            <div className="p-7 rounded-3xl bg-slate-800/80 border border-slate-700/60 space-y-4">
-              <div className="w-12 h-12 rounded-2xl bg-brand-dark/20 text-brand-light flex items-center justify-center">
-                <ShieldCheck size={24} weight="fill" />
+            <div className="bg-white p-8 rounded-3xl border border-slate-200/80 shadow-sm hover:shadow-md hover:border-brand-dark/40 transition-all group space-y-5 flex flex-col justify-between">
+              <div className="space-y-4">
+                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-brand-dark to-brand-light text-white flex items-center justify-center shadow-md shadow-brand-light/20 group-hover:scale-105 transition-transform">
+                  <ShieldCheck size={26} weight="fill" />
+                </div>
+                <h3 className="text-lg font-bold text-slate-900">Jujur Tanpa FUP</h3>
+                <p className="text-slate-600 text-xs md:text-sm leading-relaxed">
+                  Kami tidak membatasi kuota Anda secara tersembunyi. Gunakan sepuasnya untuk pekerjaan maupun hiburan.
+                </p>
               </div>
-              <h3 className="text-lg font-bold">Jujur Tanpa FUP</h3>
-              <p className="text-slate-400 text-xs leading-relaxed">
-                Kami tidak membatasi kuota Anda secara tersembunyi. Gunakan sepuasnya untuk pekerjaan maupun hiburan.
-              </p>
             </div>
 
-            <div className="p-7 rounded-3xl bg-slate-800/80 border border-slate-700/60 space-y-4">
-              <div className="w-12 h-12 rounded-2xl bg-brand-dark/20 text-brand-light flex items-center justify-center">
-                <UsersThree size={24} weight="fill" />
+            <div className="bg-white p-8 rounded-3xl border border-slate-200/80 shadow-sm hover:shadow-md hover:border-brand-dark/40 transition-all group space-y-5 flex flex-col justify-between">
+              <div className="space-y-4">
+                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-brand-dark to-brand-light text-white flex items-center justify-center shadow-md shadow-brand-light/20 group-hover:scale-105 transition-transform">
+                  <UsersThree size={26} weight="fill" />
+                </div>
+                <h3 className="text-lg font-bold text-slate-900">Responsif 24/7</h3>
+                <p className="text-slate-600 text-xs md:text-sm leading-relaxed">
+                  Tim dukungan pelanggan yang bisa dihubungi kapan saja melalui WhatsApp dengan penyelesaian cepat.
+                </p>
               </div>
-              <h3 className="text-lg font-bold">Responsif 24/7</h3>
-              <p className="text-slate-400 text-xs leading-relaxed">
-                Tim dukungan pelanggan yang bisa dihubungi kapan saja melalui WhatsApp dengan penyelesaian cepat.
-              </p>
             </div>
 
-            <div className="p-7 rounded-3xl bg-slate-800/80 border border-slate-700/60 space-y-4">
-              <div className="w-12 h-12 rounded-2xl bg-brand-dark/20 text-brand-light flex items-center justify-center">
-                <Heart size={24} weight="fill" />
+            <div className="bg-white p-8 rounded-3xl border border-slate-200/80 shadow-sm hover:shadow-md hover:border-brand-dark/40 transition-all group space-y-5 flex flex-col justify-between">
+              <div className="space-y-4">
+                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-brand-dark to-brand-light text-white flex items-center justify-center shadow-md shadow-brand-light/20 group-hover:scale-105 transition-transform">
+                  <Heart size={26} weight="fill" />
+                </div>
+                <h3 className="text-lg font-bold text-slate-900">Kebanggaan Lokal</h3>
+                <p className="text-slate-600 text-xs md:text-sm leading-relaxed">
+                  Mengutamakan kontribusi positif bagi kemajuan ekonomi dan literasi digital di wilayah Cirebon.
+                </p>
               </div>
-              <h3 className="text-lg font-bold">Kebanggaan Lokal</h3>
-              <p className="text-slate-400 text-xs leading-relaxed">
-                Mengutamakan kontribusi positif bagi kemajuan ekonomi dan literasi digital di wilayah Cirebon.
-              </p>
             </div>
           </div>
         </div>
       </section>
 
       {/* CTA Bottom */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="bg-slate-50 border border-slate-200/80 rounded-3xl p-10 md:p-14 flex flex-col md:flex-row items-center justify-between gap-8 text-center md:text-left">
-            <div className="space-y-3 max-w-xl">
-              <h3 className="text-2xl md:text-3xl font-extrabold text-slate-900">
-                Siap Bergabung dengan Jaringan JMCNET?
-              </h3>
-              <p className="text-slate-600 text-sm md:text-base leading-relaxed">
-                Lihat pilihan paket internet kami atau konsultasikan langsung alamat pemasangan Anda dengan tim CS kami.
-              </p>
-            </div>
-            <div className="flex flex-wrap gap-4 justify-center">
-              <Link
-                href="/paket"
-                className="inline-flex h-12 items-center justify-center gap-2 rounded-xl bg-brand-dark px-6 text-sm font-bold text-white hover:bg-brand-dark/95 shadow-md shadow-brand-dark/15 transition-all"
-              >
-                <span>Lihat Paket Internet</span>
-                <ArrowRight size={18} weight="bold" />
-              </Link>
-              <Link
-                href="/kontak"
-                className="inline-flex h-12 items-center justify-center rounded-xl bg-white border border-slate-300 px-6 text-sm font-bold text-slate-700 hover:bg-slate-100 transition-all"
-              >
-                Hubungi Kami
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <Footer />
+      <CtaCardSection
+        eyebrow="Mulai Berlangganan"
+        title="Siap Bergabung dengan Jaringan JMCNET?"
+        description="Lihat pilihan paket internet fiber optik kami atau konsultasikan langsung alamat pemasangan Anda dengan tim customer service kami."
+        actions={[
+          {
+            label: "Lihat Paket Internet",
+            href: "/paket",
+            variant: "primary",
+          },
+          {
+            label: "Hubungi Kami",
+            href: "/kontak",
+            variant: "secondary",
+          },
+        ]}
+      />
     </div>
   );
 }

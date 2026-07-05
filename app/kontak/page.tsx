@@ -1,8 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { Navbar } from "../components/navbar";
-import { Footer } from "../components/footer";
+import { PageHeader } from "../components/page-header";
 import { MapWrapper } from "../components/map-wrapper";
 import {
   WhatsappLogo,
@@ -32,26 +31,16 @@ export default function KontakPage() {
 
   return (
     <div className="flex-1 bg-white text-slate-900 font-sans selection:bg-brand-light/20 selection:text-brand-dark overflow-x-hidden">
-      <Navbar />
-
       {/* Hero Header */}
-      <section className="pt-32 pb-20 bg-slate-900 text-white relative overflow-hidden">
-        <div className="absolute top-1/2 right-1/3 -translate-y-1/2 w-[600px] h-[300px] bg-brand-dark/20 blur-[150px] rounded-full pointer-events-none" />
-        <div className="max-w-7xl mx-auto px-6 relative z-10 text-center space-y-6">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-white/15 backdrop-blur-md text-xs font-semibold tracking-wide uppercase text-brand-light">
-            Layanan Pelanggan 24/7
-          </div>
-          <h1 className="text-4xl md:text-6xl font-black tracking-tight leading-tight max-w-4xl mx-auto">
-            Hubungi Tim <span className="text-brand-light">JMCNET</span>
-          </h1>
-          <p className="text-slate-300 text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
-            Punya pertanyaan ketersediaan jaringan atau mengalami kendala teknis? Tim kami siap memberikan solusi terbaik dengan cepat dan responsif.
-          </p>
-        </div>
-      </section>
+      <PageHeader
+        eyebrow="LAYANAN PELANGGAN 24/7"
+        title="Hubungi Tim"
+        highlight="JMCNET Cirebon."
+        subtitle="Punya pertanyaan ketersediaan jaringan atau mengalami kendala teknis? Tim kami siap memberikan solusi terbaik dengan cepat dan responsif."
+      />
 
       {/* Contact Direct Cards */}
-      <section className="py-20 bg-slate-50 border-y border-slate-100">
+      <section className="py-20 bg-gradient-to-b from-slate-50 via-sky-50/30 to-white border-y border-slate-100 relative">
         <div className="max-w-7xl mx-auto px-6 grid gap-8 md:grid-cols-2 lg:grid-cols-4">
           {/* Card 1: CS 1 */}
           <a
@@ -125,7 +114,7 @@ export default function KontakPage() {
       </section>
 
       {/* Interactive Form & Office Location Grid */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-white relative">
         <div className="max-w-7xl mx-auto px-6 grid gap-12 lg:grid-cols-12 items-start">
           {/* Form Konsultasi */}
           <div className="lg:col-span-6 bg-slate-50 border border-slate-200/80 p-8 md:p-10 rounded-3xl space-y-6">
@@ -249,14 +238,13 @@ export default function KontakPage() {
             </div>
 
             {/* Map Leaflet */}
-            <div className="bg-white border border-slate-200 rounded-3xl overflow-hidden p-2.5 aspect-[16/10] shadow-sm relative min-h-[350px]">
+            <div className="bg-white border border-slate-200/80 rounded-3xl overflow-hidden p-2 sm:p-3 shadow-sm relative w-full h-[320px] sm:h-[400px] md:h-[480px] lg:h-[540px]">
               <MapWrapper />
             </div>
           </div>
         </div>
       </section>
 
-      <Footer />
     </div>
   );
 }

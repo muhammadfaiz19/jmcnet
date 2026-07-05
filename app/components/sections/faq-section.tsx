@@ -7,7 +7,7 @@ export function FaqSection() {
   return (
     <section
       id="faq"
-      className="py-20 bg-slate-50/50 border-t border-slate-100"
+      className="py-20 bg-white relative"
     >
       <div className="max-w-7xl mx-auto px-6 space-y-12">
         <div className="text-center max-w-3xl mx-auto space-y-4">
