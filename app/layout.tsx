@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { Navbar } from "./components/navbar";
-import { Footer } from "./components/footer";
-import { TopBar } from "./components/top-bar";
+import { Navbar } from "@/components/layout/navbar";
+import { Footer } from "@/components/layout/footer";
+import { TopBar } from "@/components/layout/top-bar";
+import Chatbot from "@/components/layout/chatbot";
+import { settingsService } from "@/services/settings.service";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -50,7 +52,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "JMCNET - Provider Internet Cepat & Stabil 100% Fiber Optic Cirebon",
     description:
-      "Koneksi internet fiber optic murni tanpa batas kuota di wilayah Cirebon. Pilihan paket hemat mulai Rp 166.500/bulan dengan gratis maintenance & sewa modem.",
+      "Koneksi internet fiber optic murni tanpa batas kuota di wilayah Cirebon. Pilihan paket hemat mulai Rp 130.000/bulan dengan gratis maintenance & sewa modem.",
     url: "https://jmcnet.id",
     siteName: "JMCNET",
     locale: "id_ID",
@@ -115,11 +117,19 @@ const jsonLd = {
   ],
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  let settings = null;
+  try {
+    const res = await settingsService.get();
+    settings = res.data?.data || null;
+  } catch (err) {
+    console.error("Gagal memuat pengaturan di layout utama:", err);
+  }
+
   return (
     <html
       lang="id"
@@ -132,10 +142,11 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-full flex flex-col">
-        <TopBar />
-        <Navbar />
+        <TopBar settings={settings} />
+        <Navbar settings={settings} />
         <main className="flex-1">{children}</main>
-        <Footer />
+        <Footer settings={settings} />
+        <Chatbot />
       </body>
     </html>
   );

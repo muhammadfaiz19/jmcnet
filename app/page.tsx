@@ -1,13 +1,13 @@
 import React from "react";
 import type { Metadata } from "next";
-import { HeroSection } from "./components/sections/hero-section";
-import { StatsSection } from "./components/sections/stats-section";
-import { WhyChooseUsSection } from "./components/sections/why-choose-us-section";
-import { PackagesSection } from "./components/sections/packages-section";
-import { HowItWorksSection } from "./components/sections/how-it-works-section";
-import { TestimonialsSection } from "./components/sections/testimonials-section";
-import { FaqSection } from "./components/sections/faq-section";
-import { ContactLocationSection } from "./components/sections/contact-location-section";
+import { HeroSection } from "@/components/sections/hero-section";
+import { StatsSection } from "@/components/sections/stats-section";
+import { WhyChooseUsSection } from "@/components/sections/why-choose-us-section";
+import { PackagesSection } from "@/components/sections/packages-section";
+import { HowItWorksSection } from "@/components/sections/how-it-works-section";
+import { TestimonialsSection } from "@/components/sections/testimonials-section";
+import { FaqSection } from "@/components/sections/faq-section";
+import { ContactLocationSection } from "@/components/sections/contact-location-section";
 
 export const metadata: Metadata = {
   title: "JMCNET - Provider Internet Cepat & Stabil 100% Fiber Optic Cirebon",
@@ -71,7 +71,28 @@ const faqJsonLd = {
   ],
 };
 
-export default function Home() {
+import { packageService } from "@/services/package.service";
+import { voucherPlanService } from "@/services/voucherPlan.service";
+import { faqService } from "@/services/faq.service";
+import { testimonialService } from "@/services/testimonial.service";
+import { settingsService } from "@/services/settings.service";
+
+export default async function Home() {
+  // Panggil semua kueri API secara paralel untuk efisiensi
+  const [packagesRes, vouchersRes, faqsRes, testimonialsRes, settingsRes] = await Promise.allSettled([
+    packageService.getAll(),
+    voucherPlanService.getAll(),
+    faqService.getAll(),
+    testimonialService.getAll(),
+    settingsService.get(),
+  ]);
+
+  const packages = packagesRes.status === "fulfilled" ? packagesRes.value.data?.data || [] : [];
+  const voucherPlans = vouchersRes.status === "fulfilled" ? vouchersRes.value.data?.data || [] : [];
+  const faqs = faqsRes.status === "fulfilled" ? faqsRes.value.data?.data || [] : [];
+  const testimonials = testimonialsRes.status === "fulfilled" ? testimonialsRes.value.data?.data || [] : [];
+  const settings = settingsRes.status === "fulfilled" ? settingsRes.value.data?.data || null : null;
+
   return (
     <div className="flex-1 bg-white text-slate-900 font-sans selection:bg-brand-light/20 selection:text-brand-dark overflow-x-hidden">
       <script
@@ -79,29 +100,29 @@ export default function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
 
-      {/* 1. Hero Section (Full-screen clean corporate without background image) */}
-      <HeroSection />
+      {/* 1. Hero Section */}
+      <HeroSection settings={settings} />
 
-      {/* 2. Internet Packages Section (Products & Pricing) */}
-      <PackagesSection />
+      {/* 2. Internet Packages Section */}
+      <PackagesSection packages={packages} voucherPlans={voucherPlans} settings={settings} />
 
-      {/* 3. Why Choose Us Section (Core Competitive Advantages) */}
+      {/* 3. Why Choose Us Section */}
       <WhyChooseUsSection />
 
-      {/* 4. How It Works Section (3 Easy Steps to Connect) */}
+      {/* 4. How It Works Section */}
       <HowItWorksSection />
 
-      {/* 5. Trusted By / Stats Section (Social Proof & Reliability) */}
+      {/* 5. Trusted By / Stats Section */}
       <StatsSection />
 
-      {/* 6. Testimonials Section (Real Customer Reviews) */}
-      <TestimonialsSection />
+      {/* 6. Testimonials Section */}
+      <TestimonialsSection testimonials={testimonials} />
 
-      {/* 7. FAQ Section (Answering Common Questions) */}
-      <FaqSection />
+      {/* 7. FAQ Section */}
+      <FaqSection faqs={faqs} />
 
-      {/* 8. Contact & Location Section (Final CTA & Physical Office) */}
-      <ContactLocationSection />
+      {/* 8. Contact & Location Section */}
+      <ContactLocationSection settings={settings} />
     </div>
   );
 }
