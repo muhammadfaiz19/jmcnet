@@ -13,9 +13,7 @@ BACKEND_URL=http://localhost:9091
 ```
 
 ### 2. Akun Akses Admin Bawaan
-Setelah database seed dijalankan di backend, Anda dapat login menggunakan akun default berikut:
-- **Email**: `admin@jmcnet.id`
-- **Password**: `jmcnet2026`
+Anda dapat masuk menggunakan email dan password sesuai dengan nilai variabel `INITIAL_ADMIN_EMAIL` dan `INITIAL_ADMIN_PASSWORD` pada berkas `.env` backend Anda.
 
 ### 3. Langkah Menjalankan
 ```bash
