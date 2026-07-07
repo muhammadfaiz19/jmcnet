@@ -1,10 +1,9 @@
-"use client";
-
 import React from "react";
+import type { Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
-import { PageHeader } from "../components/page-header";
-import { CtaCardSection } from "../components/cta-card-section";
+import { PageHeader } from "@/components/sections/page-header";
+import { CtaCardSection } from "@/components/sections/cta-card-section";
+import { settingsService } from "@/services/settings.service";
 import {
   Target,
   Eye,
@@ -12,11 +11,27 @@ import {
   Heart,
   Lightning,
   UsersThree,
-  ArrowRight,
   CheckCircle,
-} from "@phosphor-icons/react";
+} from "@phosphor-icons/react/dist/ssr";
 
-export default function TentangPage() {
+export const metadata: Metadata = {
+  title: "Tentang JMCNET - PT Jaringan Multimedia Cirebon",
+  description:
+    "Pelajari sejarah, legalitas, visi misi, serta komitmen pelayanan PT Jaringan Multimedia Cirebon dalam menghadirkan jaringan internet fiber optic terbaik di Cirebon.",
+};
+
+export default async function TentangPage() {
+  // Ambil data settings dari backend API secara dinamis
+  const settingsRes = await settingsService.get().catch(() => null);
+  const settings = settingsRes?.data?.data || null;
+
+  const aboutTitle = settings?.aboutTitle || "PT Jaringan Multimedia Cirebon (SGC Network)";
+  const aboutDescription = settings?.aboutDescription || 
+    "Berawal dari semangat untuk menghadirkan konektivitas internet yang layak dan setara di berbagai sudut daerah Cirebon, PT Jaringan Multimedia Cirebon terus melakukan ekspansi jaringan infrastruktur kabel fiber optik mandiri.\n\nBerkantor pusat di Arjawinangun, tim teknisi dan layanan pelanggan kami berakar kuat pada budaya lokal yang ramah, cepat tanggap, serta mengutamakan kepuasan jangka panjang setiap pelanggan.";
+
+  // Membagi cerita per paragraf berdasarkan baris baru
+  const aboutParagraphs = aboutDescription.split("\n").filter(p => p.trim() !== "");
+
   return (
     <div className="flex-1 bg-white text-slate-900 font-sans selection:bg-brand-light/20 selection:text-brand-dark overflow-x-hidden">
       {/* Hero Header */}
@@ -68,7 +83,7 @@ export default function TentangPage() {
                 </li>
                 <li className="flex items-start gap-3">
                   <CheckCircle size={20} className="text-emerald-500 shrink-0 mt-1" weight="fill" />
-                  <span>Memberikan pelayanan teknis dan customer support lokal di jam operasional (Senin - Sabtu: 09.00 - 18.00) yang sigap dan solutif.</span>
+                  <span>Menyediakan pelayanan teknis dan customer support lokal yang sigap dan solutif pada jam operasional.</span>
                 </li>
               </ul>
             </div>
@@ -87,14 +102,13 @@ export default function TentangPage() {
               Latar Belakang &amp; Legalitas
             </span>
             <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 leading-tight">
-              PT Jaringan Multimedia Cirebon (SGC Network)
+              {aboutTitle}
             </h2>
-            <p className="text-slate-600 leading-relaxed text-base">
-              Berawal dari semangat untuk menghadirkan konektivitas internet yang layak dan setara di berbagai sudut daerah Cirebon, PT Jaringan Multimedia Cirebon terus melakukan ekspansi jaringan infrastruktur kabel fiber optik mandiri.
-            </p>
-            <p className="text-slate-600 leading-relaxed text-base">
-              Berkantor pusat di Arjawinangun, tim teknisi dan layanan pelanggan kami berakar kuat pada budaya lokal yang ramah, cepat tanggap, serta mengutamakan kepuasan jangka panjang setiap pelanggan.
-            </p>
+            {aboutParagraphs.map((paragraph, index) => (
+              <p key={index} className="text-slate-600 leading-relaxed text-base">
+                {paragraph}
+              </p>
+            ))}
             <div className="grid grid-cols-2 gap-4 pt-4">
               <div className="bg-slate-50 p-4 rounded-2xl border border-slate-100">
                 <h4 className="text-2xl font-black text-brand-dark">100%</h4>
@@ -168,7 +182,7 @@ export default function TentangPage() {
                 </div>
                 <h3 className="text-lg font-bold text-slate-900">Responsif &amp; Solutif</h3>
                 <p className="text-slate-600 text-xs md:text-sm leading-relaxed">
-                  Tim dukungan pelanggan yang siap membantu di jam operasional (Senin - Sabtu: 09.00 - 18.00) via WhatsApp dengan penyelesaian cepat.
+                  Tim dukungan pelanggan yang siap membantu di jam operasional via WhatsApp dengan penyelesaian cepat.
                 </p>
               </div>
             </div>

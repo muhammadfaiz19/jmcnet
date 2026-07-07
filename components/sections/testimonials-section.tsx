@@ -3,8 +3,21 @@
 import React from "react";
 import { Star } from "@phosphor-icons/react";
 
-export function TestimonialsSection() {
-  const testimonials = [
+import type { Testimonial } from "@/types";
+
+export function TestimonialsSection({ testimonials = [] }: { testimonials?: Testimonial[] }) {
+  // Fungsi menghitung inisial nama secara otomatis
+  const getInitials = (name: string) => {
+    if (!name) return "P";
+    return name
+      .split(" ")
+      .map((n) => n[0])
+      .join("")
+      .substring(0, 2)
+      .toUpperCase();
+  };
+
+  const defaultTestimonials = [
     {
       id: 1,
       quote:
@@ -39,8 +52,18 @@ export function TestimonialsSection() {
     },
   ];
 
-  // Duplicate for seamless loop
-  const marqueeItems = [...testimonials, ...testimonials];
+  const listItems = testimonials.length > 0 
+    ? testimonials.map((t) => ({
+        id: t.id,
+        quote: t.quote,
+        name: t.name,
+        role: t.role,
+        initials: getInitials(t.name),
+      }))
+    : defaultTestimonials;
+
+  // Duplikasi data untuk efek geser marquee tanpa putus
+  const marqueeItems = [...listItems, ...listItems];
 
   return (
     <section className="py-20 bg-gradient-to-tr from-slate-50 via-sky-50/25 to-white border-y border-slate-200/80 overflow-hidden relative">

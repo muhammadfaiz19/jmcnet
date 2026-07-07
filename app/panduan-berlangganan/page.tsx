@@ -1,28 +1,44 @@
-"use client";
-
 import React from "react";
+import type { Metadata } from "next";
 import Link from "next/link";
-import { PageHeader } from "../components/page-header";
-import { CtaCardSection } from "../components/cta-card-section";
+import { PageHeader } from "@/components/sections/page-header";
+import { CtaCardSection } from "@/components/sections/cta-card-section";
+import { settingsService } from "@/services/settings.service";
 import {
   DownloadSimple,
   FileDoc,
   FilePdf,
   CheckCircle,
-  Bank,
   ArrowRight,
   ClipboardText,
   Wrench,
   WifiHigh,
-} from "@phosphor-icons/react";
-import { WhatsappLogo } from "../components/whatsapp-icon";
+} from "@phosphor-icons/react/dist/ssr";
+import { WhatsappLogo } from "@/components/layout/whatsapp-icon";
 
-export default function PanduanBerlanggananPage() {
+export const metadata: Metadata = {
+  title: "Panduan Berlangganan & Dokumen Resmi - JMCNET",
+  description:
+    "Pelajari alur pendaftaran, cara pembayaran tagihan bulanan, serta unduh formulir registrasi PDF dan draf kontrak berlangganan resmi JMCNET.",
+};
+
+export default async function PanduanBerlanggananPage() {
+  // Ambil data settings dari backend API secara dinamis
+  const settingsRes = await settingsService.get().catch(() => null);
+  const settings = settingsRes?.data?.data || null;
+
+  const whatsappCs1 = settings?.whatsappCs1 || "6285179997972";
+  const registrationFormUrl = settings?.registrationForm || "/doc/formulir-pendaftaran-jmcnet.pdf";
+  const serviceContractUrl = settings?.serviceContract || "/KONTRAK BERLANGGANAN LAYANAN SGC NETWORK.docx";
+
+  const isFormPdf = registrationFormUrl.toLowerCase().endsWith(".pdf");
+  const isContractPdf = serviceContractUrl.toLowerCase().endsWith(".pdf");
+
   return (
     <div className="flex-1 bg-white text-slate-900 font-sans selection:bg-brand-light/20 selection:text-brand-dark overflow-x-hidden">
       {/* Hero Header */}
       <PageHeader
-        eyebrow="PANDUAN & ADMINISTRASI"
+        eyebrow="PANDUAN &amp; ADMINISTRASI"
         title="Panduan Berlangganan &"
         highlight="Dokumen Resmi."
         subtitle="Semua informasi mengenai prosedur pendaftaran, pengunduhan kontrak berkas resmi SGC Network, hingga tata cara pembayaran bulanan."
@@ -43,80 +59,63 @@ export default function PanduanBerlanggananPage() {
             </p>
           </div>
 
-          <div className="grid gap-8 md:grid-cols-3 relative">
-            <div className="bg-slate-50 p-8 rounded-3xl border border-slate-200/80 space-y-5 relative">
-              <div className="w-12 h-12 rounded-2xl bg-brand-dark text-white flex items-center justify-center font-black text-lg shadow-md shadow-brand-dark/20">
-                1
-              </div>
-              <div className="space-y-2">
-                <h3 className="text-xl font-bold text-slate-900 flex items-center gap-2">
-                  <ClipboardText size={22} className="text-brand-dark" />
-                  <span>Pilih Paket &amp; Registrasi</span>
-                </h3>
-                <p className="text-slate-600 text-sm leading-relaxed">
-                  Pilih paket (5 Mbps, 16 Mbps, 26 Mbps, atau 56 Mbps). Kirim foto identitas KTP beserta alamat pasang via WhatsApp atau isi formulir PDF pendaftaran.
-                </p>
-              </div>
+          {/* Alur Detail */}
+          <div className="grid gap-8 md:grid-cols-3 max-w-5xl">
+            {/* Step 1 */}
+            <div className="bg-white p-8 rounded-3xl border border-slate-200/80 shadow-sm space-y-4 hover:border-brand-dark/40 transition-colors">
+              <span className="text-3xl font-black text-brand-light font-mono">01.</span>
+              <h3 className="text-lg font-bold text-slate-900">Daftar &amp; Cek Lokasi</h3>
+              <p className="text-slate-600 text-sm leading-relaxed">
+                Hubungi Customer Service kami via WhatsApp. Kirimkan detail alamat lengkap atau share lokasi rumah Anda untuk pengecekan ketersediaan ODP di area Anda.
+              </p>
             </div>
-
-            <div className="bg-slate-50 p-8 rounded-3xl border border-slate-200/80 space-y-5 relative">
-              <div className="w-12 h-12 rounded-2xl bg-brand-dark text-white flex items-center justify-center font-black text-lg shadow-md shadow-brand-dark/20">
-                2
-              </div>
-              <div className="space-y-2">
-                <h3 className="text-xl font-bold text-slate-900 flex items-center gap-2">
-                  <Bank size={22} className="text-brand-dark" />
-                  <span>Pembayaran Awal</span>
-                </h3>
-                <p className="text-slate-600 text-sm leading-relaxed">
-                  Lakukan pembayaran aktivasi (Rp 150.000 + iuran bulan pertama) melalui transfer ke rekening resmi Bank BRI PT Jaringan Multimedia Cirebon.
-                </p>
-              </div>
+            {/* Step 2 */}
+            <div className="bg-white p-8 rounded-3xl border border-slate-200/80 shadow-sm space-y-4 hover:border-brand-dark/40 transition-colors">
+              <span className="text-3xl font-black text-brand-light font-mono">02.</span>
+              <h3 className="text-lg font-bold text-slate-900">Isi Formulir &amp; Jadwal</h3>
+              <p className="text-slate-600 text-sm leading-relaxed">
+                Setelah ODP dipastikan tersedia di area Anda, Anda dapat mengisi formulir berlangganan (unduh di bawah) dan menyepakati jadwal pemasangan wifi dengan teknisi kami.
+              </p>
             </div>
-
-            <div className="bg-slate-50 p-8 rounded-3xl border border-slate-200/80 space-y-5 relative">
-              <div className="w-12 h-12 rounded-2xl bg-brand-dark text-white flex items-center justify-center font-black text-lg shadow-md shadow-brand-dark/20">
-                3
-              </div>
-              <div className="space-y-2">
-                <h3 className="text-xl font-bold text-slate-900 flex items-center gap-2">
-                  <Wrench size={22} className="text-brand-dark" />
-                  <span>Instalasi &amp; Aktivasi</span>
-                </h3>
-                <p className="text-slate-600 text-sm leading-relaxed">
-                  Tim teknisi kami akan menjadwalkan kunjungan penarikan kabel fiber optik dan penyetelan router Wi-Fi hingga internet aktif 100%.
-                </p>
-              </div>
+            {/* Step 3 */}
+            <div className="bg-white p-8 rounded-3xl border border-slate-200/80 shadow-sm space-y-4 hover:border-brand-dark/40 transition-colors">
+              <span className="text-3xl font-black text-brand-light font-mono">03.</span>
+              <h3 className="text-lg font-bold text-slate-900">Instalasi &amp; Aktivasi</h3>
+              <p className="text-slate-600 text-sm leading-relaxed">
+                Tim teknisi kami akan berkunjung ke rumah untuk penarikan kabel fiber optik, setting wifi router, dan aktivasi internet. Anda siap berselancar cepat!
+              </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Unduhan Dokumen Resmi Section */}
-      <section className="py-20 bg-white border-y border-slate-100 relative">
-        <div className="max-w-7xl mx-auto px-6 space-y-12">
-          <div className="text-center max-w-3xl mx-auto space-y-4">
+      {/* Unduhan Dokumen */}
+      <section className="py-20 bg-white relative border-t border-slate-100">
+        <div className="max-w-7xl mx-auto px-6 space-y-16">
+          <div className="max-w-3xl space-y-4">
             <span className="text-xs font-mono font-bold tracking-[0.2em] text-brand-dark uppercase block">
-              Pusat Unduhan Berkas
+              Unduhan File Resmi
             </span>
             <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900">
-              Dokumen &amp; Kontrak Resmi
+              Dokumen Administrasi Pelanggan
             </h2>
             <p className="text-slate-600 text-base">
-              Unduh berkas resmi di bawah ini untuk kelengkapan administrasi, pendaftaran offline, atau rincian klausul layanan.
+              Unduh berkas kelengkapan pendaftaran offline maupun draf surat perjanjian kesepakatan berlangganan layanan JMCNET.
             </p>
           </div>
 
-          <div className="grid gap-8 md:grid-cols-2 max-w-5xl mx-auto">
-            {/* Card PDF */}
+          <div className="grid gap-8 md:grid-cols-2 max-w-5xl">
+            {/* Card PDF / Word 1 */}
             <div className="bg-white p-8 rounded-3xl border border-slate-200/80 shadow-sm flex flex-col justify-between space-y-6 hover:shadow-md transition-shadow">
               <div className="space-y-4">
-                <div className="w-14 h-14 rounded-2xl bg-rose-50 text-rose-600 flex items-center justify-center">
-                  <FilePdf size={34} weight="fill" />
+                <div className={`w-14 h-14 rounded-2xl flex items-center justify-center ${
+                  isFormPdf ? "bg-rose-50 text-rose-600" : "bg-blue-50 text-blue-600"
+                }`}>
+                  {isFormPdf ? <FilePdf size={34} weight="fill" /> : <FileDoc size={34} weight="fill" />}
                 </div>
                 <div>
                   <h3 className="text-2xl font-black text-slate-900">Formulir Pendaftaran JMCNET</h3>
-                  <p className="text-xs font-mono text-slate-400 mt-1">Format: PDF Document</p>
+                  <p className="text-xs font-mono text-slate-400 mt-1">Format: {isFormPdf ? "PDF Document" : "Word Document"}</p>
                 </div>
                 <p className="text-slate-600 text-sm leading-relaxed">
                   Formulir aplikasi berlangganan untuk diisi data diri pelanggan (Nama, NIK KTP, Alamat Lengkap, Pilihan Paket, dan Kontak darurat).
@@ -124,24 +123,28 @@ export default function PanduanBerlanggananPage() {
               </div>
 
               <a
-                href="/doc/formulir-pendaftaran-jmcnet.pdf"
-                download="Formulir_Berlangganan_JMCNET.pdf"
-                className="w-full inline-flex h-12 items-center justify-center gap-2.5 rounded-xl bg-brand-dark text-sm font-bold text-white hover:bg-brand-dark/95 shadow-md shadow-brand-dark/15 transition-all"
+                href={registrationFormUrl}
+                download={isFormPdf ? "Formulir_Berlangganan_JMCNET.pdf" : "Formulir_Berlangganan_JMCNET.docx"}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full inline-flex h-12 items-center justify-center gap-2.5 rounded-xl bg-brand-dark text-sm font-bold text-white hover:bg-brand-dark/95 shadow-md shadow-brand-dark/15 transition-all cursor-pointer"
               >
                 <DownloadSimple size={20} weight="bold" />
-                <span>Unduh Formulir PDF</span>
+                <span>Unduh Formulir {isFormPdf ? "PDF" : "Word"}</span>
               </a>
             </div>
 
-            {/* Card DOCX */}
+            {/* Card PDF / Word 2 */}
             <div className="bg-white p-8 rounded-3xl border border-slate-200/80 shadow-sm flex flex-col justify-between space-y-6 hover:shadow-md transition-shadow">
               <div className="space-y-4">
-                <div className="w-14 h-14 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center">
-                  <FileDoc size={34} weight="fill" />
+                <div className={`w-14 h-14 rounded-2xl flex items-center justify-center ${
+                  isContractPdf ? "bg-rose-50 text-rose-600" : "bg-blue-50 text-blue-600"
+                }`}>
+                  {isContractPdf ? <FilePdf size={34} weight="fill" /> : <FileDoc size={34} weight="fill" />}
                 </div>
                 <div>
                   <h3 className="text-2xl font-black text-slate-900">Kontrak Berlangganan SGC Network</h3>
-                  <p className="text-xs font-mono text-slate-400 mt-1">Format: DOCX Word Document</p>
+                  <p className="text-xs font-mono text-slate-400 mt-1">Format: {isContractPdf ? "PDF Document" : "Word Document"}</p>
                 </div>
                 <p className="text-slate-600 text-sm leading-relaxed">
                   Dokumen perjanjian kesepakatan layanan yang mencakup rincian hak dan kewajiban hukum pelanggan, spesifikasi SLA jaringan, dan ketentuan garansi.
@@ -149,12 +152,14 @@ export default function PanduanBerlanggananPage() {
               </div>
 
               <a
-                href="/KONTRAK BERLANGGANAN LAYANAN SGC NETWORK.docx"
-                download="KONTRAK BERLANGGANAN LAYANAN SGC NETWORK.docx"
-                className="w-full inline-flex h-12 items-center justify-center gap-2.5 rounded-xl bg-brand-dark text-sm font-bold text-white hover:bg-brand-dark/95 shadow-md shadow-brand-dark/15 transition-all"
+                href={serviceContractUrl}
+                download={isContractPdf ? "KONTRAK_BERLANGGANAN_LAYANAN_SGC_NETWORK.pdf" : "KONTRAK_BERLANGGANAN_LAYANAN_SGC_NETWORK.docx"}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full inline-flex h-12 items-center justify-center gap-2.5 rounded-xl bg-brand-dark text-sm font-bold text-white hover:bg-brand-dark/95 shadow-md shadow-brand-dark/15 transition-all cursor-pointer"
               >
                 <DownloadSimple size={20} weight="bold" />
-                <span>Unduh Kontrak DOCX</span>
+                <span>Unduh Kontrak {isContractPdf ? "PDF" : "Word"}</span>
               </a>
             </div>
           </div>
@@ -217,7 +222,7 @@ export default function PanduanBerlanggananPage() {
                   6
                 </span>
                 <p>
-                  Permohonan berhenti berlangganan atau non-aktif sementara (maksimal 2 bulan) wajib mengisi formulir pemberhentian selambatnya sebelum masuk siklus tagihan bulan berikutnya.
+                  Permohonan berhenti berlangganan atau non-aktif sementara (maksimal 2 bulan) wajib menghubungi sales / admin sebelum siklus tagihan bulan berikutnya berjalan.
                 </p>
               </div>
             </div>
@@ -270,7 +275,7 @@ export default function PanduanBerlanggananPage() {
         actions={[
           {
             label: "Daftar Langsung via WA",
-            href: "https://wa.me/6285179997972",
+            href: `https://wa.me/${whatsappCs1}`,
             isExternal: true,
             icon: <WhatsappLogo size={18} weight="fill" className="text-emerald-600" />,
             variant: "primary",

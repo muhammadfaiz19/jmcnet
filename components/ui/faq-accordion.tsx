@@ -9,7 +9,7 @@ interface FAQItem {
   answer: string;
 }
 
-const faqs: FAQItem[] = [
+const defaultFaqs: FAQItem[] = [
   {
     question: "Apakah ada FUP (Fair Usage Policy) pada paket JMCNET?",
     answer:
@@ -50,7 +50,7 @@ const faqs: FAQItem[] = [
     question:
       "Bagaimana jika saya ingin berhenti berlangganan atau menonaktifkan layanan sementara?",
     answer:
-      "Untuk berhenti berlangganan atau nonaktif sementara (maksimal 2 bulan), Anda wajib mengisi formulir berhenti berlangganan sebelum tagihan bulan berikutnya masuk agar tagihan tidak terus berjalan.",
+      "Untuk berhenti berlangganan atau nonaktif sementara (maksimal 2 manual), Anda wajib mengisi formulir berhenti berlangganan sebelum tagihan bulan berikutnya masuk agar tagihan tidak terus berjalan.",
   },
   {
     question: "Apakah layanan internet JMCNET tersedia untuk kebutuhan bisnis?",
@@ -74,8 +74,12 @@ const faqs: FAQItem[] = [
   },
 ];
 
-export function FAQAccordion() {
+import type { Faq } from "@/types";
+
+export function FAQAccordion({ faqs = [] }: { faqs?: Faq[] }) {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
+
+  const displayFaqs = faqs.length > 0 ? faqs : defaultFaqs;
 
   const toggle = (index: number) => {
     setActiveIndex(activeIndex === index ? null : index);
@@ -83,7 +87,7 @@ export function FAQAccordion() {
 
   return (
     <div className="max-w-3xl mx-auto space-y-4">
-      {faqs.map((faq, index) => {
+      {displayFaqs.map((faq, index) => {
         const isOpen = activeIndex === index;
         return (
           <div

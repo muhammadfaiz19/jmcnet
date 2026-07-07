@@ -1,9 +1,10 @@
 "use client";
 
 import React from "react";
-import { FAQAccordion } from "../faq-accordion";
+import { FAQAccordion } from "../ui/faq-accordion";
+import type { Faq } from "@/types";
 
-export function FaqSection() {
+export function FaqSection({ faqs = [] }: { faqs?: Faq[] }) {
   return (
     <section
       id="faq"
@@ -20,7 +21,7 @@ export function FaqSection() {
           </p>
         </div>
 
-        <FAQAccordion />
+        <FAQAccordion faqs={faqs} />
       </div>
     </section>
   );

@@ -3,7 +3,13 @@
 import React from "react";
 import Link from "next/link";
 
-export function HeroSection() {
+import type { SiteSettings } from "@/types";
+
+export function HeroSection({ settings }: { settings: SiteSettings | null }) {
+  const companyName = settings?.companyName || "PT Jaringan Multimedia Cirebon";
+  const heroHeadline = settings?.heroHeadline || "Koneksi Internet Fiber Optic Murni.";
+  const heroSubtext = settings?.heroSubtext || "Jaringan backbone 100% fiber optic berkecepatan tinggi untuk hunian dan bisnis di Cirebon. Tanpa batas kuota (Unlimited), stabil, dan transparan.";
+
   return (
     <section className="relative min-h-[calc(100vh-6.5rem)] pt-8 pb-8 md:pt-12 md:pb-12 bg-gradient-to-b from-slate-50 via-sky-50/40 to-white border-b border-slate-200/80 overflow-hidden flex flex-col">
       {/* Subtle Corporate Grid / Dot Pattern */}
@@ -14,25 +20,24 @@ export function HeroSection() {
       <div className="max-w-7xl mx-auto px-6 relative z-10 w-full flex-1 flex flex-col justify-between gap-12">
         {/* Editorial / Swiss Architectural Layout - Centered Vertically */}
         <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-end my-auto py-8">
-          {/* Main Title Column */}
+          {/* Kolom Judul Utama */}
           <div className="lg:col-span-7 space-y-6">
             <div className="flex flex-wrap items-center gap-x-3 gap-y-2 text-xs font-mono tracking-[0.2em] text-brand-dark uppercase">
               <span className="w-6 h-[2px] bg-brand-dark" />
-              <span className="font-bold tracking-[0.25em]">PT Jaringan Multimedia Cirebon</span>
+              <span className="font-bold tracking-[0.25em]">{companyName}</span>
               <span className="text-slate-400 font-light">{"//"}</span>
               <span className="text-slate-500">100% Fiber Optic</span>
             </div>
             
             <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight text-slate-900 leading-[1.05]">
-              Koneksi Internet <br />
-              <span className="text-brand-dark font-extrabold block sm:inline">Fiber Optic Murni.</span>
+              {heroHeadline}
             </h1>
           </div>
 
-          {/* Description & CTA Column */}
+          {/* Kolom Deskripsi & CTA */}
           <div className="lg:col-span-5 space-y-8 lg:pb-2">
             <p className="text-base sm:text-lg text-slate-600 font-normal leading-relaxed max-w-md">
-              Jaringan backbone 100% fiber optic berkecepatan tinggi untuk hunian dan bisnis di Cirebon. Tanpa batas kuota (Unlimited), stabil, dan transparan.
+              {heroSubtext}
             </p>
             
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 pt-2 w-full sm:w-auto">

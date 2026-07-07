@@ -1,8 +1,8 @@
-"use client";
-
 import React from "react";
-import { PageHeader } from "../components/page-header";
-import { CtaCardSection } from "../components/cta-card-section";
+import type { Metadata } from "next";
+import { PageHeader } from "@/components/sections/page-header";
+import { CtaCardSection } from "@/components/sections/cta-card-section";
+import { settingsService } from "@/services/settings.service";
 import {
   CheckCircle,
   XCircle,
@@ -14,14 +14,25 @@ import {
   Cpu,
   CloudCheck,
   Tag,
-  Sparkle,
   ArrowsLeftRight,
-} from "@phosphor-icons/react";
+} from "@phosphor-icons/react/dist/ssr";
 
-export default function KeunggulanPage() {
+export const metadata: Metadata = {
+  title: "Keunggulan Teknologi Fiber Optic JMCNET Cirebon",
+  description:
+    "Pelajari mengapa teknologi jaringan internet fiber optic murni (FTTH) JMCNET jauh lebih stabil dibanding internet biasa. Tanpa FUP, simetris, dan anti-cuaca buruk.",
+};
+
+export default async function KeunggulanPage() {
+  // Ambil data settings dari backend API secara dinamis
+  const settingsRes = await settingsService.get().catch(() => null);
+  const settings = settingsRes?.data?.data || null;
+
+  const whatsappCs1 = settings?.whatsappCs1 || "6285179997972";
+
   return (
     <div className="flex-1 bg-white text-slate-900 font-sans selection:bg-brand-light/20 selection:text-brand-dark overflow-x-hidden">
-      {/* 1. Hero Header (Using new primary dark bg from PageHeader) */}
+      {/* 1. Hero Header */}
       <PageHeader
         eyebrow="INFRASTRUKTUR TERMUTAKHIR"
         title="Teknologi Fiber Optic"
@@ -29,7 +40,7 @@ export default function KeunggulanPage() {
         subtitle="Mengenal keunggulan nyata jaringan FTTH (Fiber to the Home) JMCNET yang dirancang khusus untuk kestabilan tinggi di cuaca apapun tanpa bahasa teknis yang berbelit."
       />
 
-      {/* 2. KOMPARASI NYATA: JMCNET vs INTERNET BIASA (Direct, effortless scannability) */}
+      {/* 2. KOMPARASI NYATA: JMCNET vs INTERNET BIASA */}
       <section className="py-24 bg-gradient-to-b from-slate-50 via-slate-50/50 to-white relative border-b border-slate-100">
         <div className="max-w-7xl mx-auto px-6 space-y-12">
           {/* Section Title */}
@@ -58,175 +69,141 @@ export default function KeunggulanPage() {
                     <span className="text-[11px] font-mono font-bold tracking-widest text-brand-light uppercase block">
                       Rekomendasi Terbaik
                     </span>
-                    <h3 className="text-2xl font-black text-white mt-1">
-                      JMCNET Fiber Optic
-                    </h3>
+                    <h3 className="text-2xl font-black text-white mt-1">JMCNET Fiber Optic</h3>
                   </div>
-                  <div className="w-10 h-10 rounded-2xl bg-white/10 flex items-center justify-center text-brand-light shrink-0">
-                    <Sparkle size={22} weight="fill" />
-                  </div>
+                  <CheckCircle size={32} className="text-brand-light shrink-0" weight="fill" />
                 </div>
 
-                <ul className="space-y-4 text-sm md:text-base">
-                  <li className="flex items-start gap-3.5">
-                    <CheckCircle size={22} weight="fill" className="text-emerald-400 shrink-0 mt-0.5" />
+                <ul className="space-y-4 text-xs md:text-sm">
+                  <li className="flex gap-3">
+                    <CheckCircle size={20} className="text-brand-light shrink-0 mt-0.5" weight="bold" />
                     <div>
-                      <strong className="text-white block font-bold">100% Unlimited Tanpa FUP</strong>
-                      <span className="text-slate-300 text-xs leading-relaxed">Bebas kuota pemakaian wajar. Kecepatan tidak akan pernah diturunkan di akhir bulan.</span>
+                      <strong className="text-white">100% Kabel Fiber Optic Murni</strong>
+                      <p className="text-slate-400 text-xs mt-0.5">Kabel kaca menghantarkan data lewat cahaya, bukan listrik. Anti induksi petir dan karat.</p>
                     </div>
                   </li>
-                  <li className="flex items-start gap-3.5">
-                    <CheckCircle size={22} weight="fill" className="text-emerald-400 shrink-0 mt-0.5" />
+                  <li className="flex gap-3">
+                    <CheckCircle size={20} className="text-brand-light shrink-0 mt-0.5" weight="bold" />
                     <div>
-                      <strong className="text-white block font-bold">Stabilitas Tinggi 24 Jam</strong>
-                      <span className="text-slate-300 text-xs leading-relaxed">Jalur kabel khusus ke rumah Anda. Speed konsisten tanpa turun saat jam sibuk malam hari.</span>
+                      <strong className="text-white">Tanpa Batas Kuota (Murni Unlimited)</strong>
+                      <p className="text-slate-400 text-xs mt-0.5">Bebas download bergiga-giga tanpa khawatir kecepatan turun tiba-tiba (Bebas FUP).</p>
                     </div>
                   </li>
-                  <li className="flex items-start gap-3.5">
-                    <CheckCircle size={22} weight="fill" className="text-emerald-400 shrink-0 mt-0.5" />
+                  <li className="flex gap-3">
+                    <CheckCircle size={20} className="text-brand-light shrink-0 mt-0.5" weight="bold" />
                     <div>
-                      <strong className="text-white block font-bold">Tahan Cuaca Ekstrem</strong>
-                      <span className="text-slate-300 text-xs leading-relaxed">Kabel serat optik kebal terhadap gangguan gelombang magnet, anti petir, dan tahan hujan badai.</span>
+                      <strong className="text-white">Kecepatan Unggah &amp; Unduh Simetris</strong>
+                      <p className="text-slate-400 text-xs mt-0.5">Kirim tugas sekolah/WFO secepat nonton streaming video 4K (1:1 Ratio).</p>
                     </div>
                   </li>
-                  <li className="flex items-start gap-3.5">
-                    <CheckCircle size={22} weight="fill" className="text-emerald-400 shrink-0 mt-0.5" />
+                  <li className="flex gap-3">
+                    <CheckCircle size={20} className="text-brand-light shrink-0 mt-0.5" weight="bold" />
                     <div>
-                      <strong className="text-white block font-bold">Ping Rendah (Anti-Lag)</strong>
-                      <span className="text-slate-300 text-xs leading-relaxed">Respon jaringan sangat cepat, mulus untuk game online kompetitif &amp; Zoom meeting.</span>
-                    </div>
-                  </li>
-                  <li className="flex items-start gap-3.5">
-                    <CheckCircle size={22} weight="fill" className="text-emerald-400 shrink-0 mt-0.5" />
-                    <div>
-                      <strong className="text-white block font-bold">CS &amp; Teknisi Lokal Cirebon</strong>
-                      <span className="text-slate-300 text-xs leading-relaxed">Dukungan langsung via WhatsApp tanpa antrian robot. Penanganan kendala di hari yang sama.</span>
+                      <strong className="text-white">Anti Gangguan Cuaca</strong>
+                      <p className="text-slate-600 text-xs mt-0.5 bg-brand-light/10 text-brand-light rounded-md px-1 py-0.5 font-mono inline-block">Hujan/Mendung?</p>
+                      <p className="text-slate-400 text-xs mt-0.5">Sinyal tetap stabil karena kabel terlindung di dalam tanah/tiang khusus dan kebal cuaca.</p>
                     </div>
                   </li>
                 </ul>
-              </div>
-
-              <div className="pt-8 mt-6 border-t border-white/10 relative z-10">
-                <span className="text-xs font-mono text-emerald-300 font-bold flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
-                  Jaringan Terbukti Stabil &amp; Terpercaya
-                </span>
               </div>
             </div>
 
-            {/* Internet Biasa Card (The Contrast) */}
-            <div className="bg-slate-50 border border-slate-200/80 rounded-3xl p-8 md:p-10 shadow-sm flex flex-col justify-between">
+            {/* Provider Konvensional / Biasa */}
+            <div className="bg-slate-50 text-slate-800 rounded-3xl p-8 md:p-10 shadow-sm flex flex-col justify-between border border-slate-200/80">
               <div className="space-y-6">
-                <div className="flex items-center justify-between border-b border-slate-200 pb-5">
+                <div className="flex items-center justify-between border-b border-slate-200/80 pb-5">
                   <div>
                     <span className="text-[11px] font-mono font-bold tracking-widest text-slate-400 uppercase block">
-                      Teknologi Konvensional
+                      Koneksi Lama
                     </span>
-                    <h3 className="text-2xl font-bold text-slate-700 mt-1">
-                      Kabel Tembaga / Wireless
-                    </h3>
+                    <h3 className="text-2xl font-black text-slate-900 mt-1">Provider Kuota / GSM</h3>
                   </div>
-                  <div className="w-10 h-10 rounded-2xl bg-slate-200/80 flex items-center justify-center text-slate-500 shrink-0">
-                    <XCircle size={22} weight="fill" />
-                  </div>
+                  <XCircle size={32} className="text-rose-400 shrink-0" weight="fill" />
                 </div>
 
-                <ul className="space-y-4 text-sm md:text-base text-slate-600">
-                  <li className="flex items-start gap-3.5">
-                    <XCircle size={22} weight="fill" className="text-rose-500 shrink-0 mt-0.5" />
+                <ul className="space-y-4 text-xs md:text-sm">
+                  <li className="flex gap-3">
+                    <XCircle size={20} className="text-rose-500 shrink-0 mt-0.5" weight="bold" />
                     <div>
-                      <strong className="text-slate-800 block font-bold">Ada Batas Kuota (FUP)</strong>
-                      <span className="text-slate-500 text-xs leading-relaxed">Kecepatan drastis diturunkan hingga 1 Mbps setelah pemakaian melewati batas kuota tertentu.</span>
+                      <strong className="text-slate-800">Modem Orbit / GSM Biasa</strong>
+                      <p className="text-slate-500 text-xs mt-0.5">Bergantung penuh pada kekuatan sinyal pemancar seluler (BTS). Sering ngadat di jam padat.</p>
                     </div>
                   </li>
-                  <li className="flex items-start gap-3.5">
-                    <XCircle size={22} weight="fill" className="text-rose-500 shrink-0 mt-0.5" />
+                  <li className="flex gap-3">
+                    <XCircle size={20} className="text-rose-500 shrink-0 mt-0.5" weight="bold" />
                     <div>
-                      <strong className="text-slate-800 block font-bold">Lambat Saat Jam Sibuk</strong>
-                      <span className="text-slate-500 text-xs leading-relaxed">Bandwidth dibagi-bagi di tiang jalan. Internet terasa sangat berat di malam hari atau hari libur.</span>
+                      <strong className="text-slate-800">Batasan FUP yang Mencekik</strong>
+                      <p className="text-slate-500 text-xs mt-0.5">Kecepatan turun drastis (jadi 128Kbps) setelah pemakaian melebihi batas kuota harian/bulanan.</p>
                     </div>
                   </li>
-                  <li className="flex items-start gap-3.5">
-                    <XCircle size={22} weight="fill" className="text-rose-500 shrink-0 mt-0.5" />
+                  <li className="flex gap-3">
+                    <XCircle size={20} className="text-rose-500 shrink-0 mt-0.5" weight="bold" />
                     <div>
-                      <strong className="text-slate-800 block font-bold">Rentan Gangguan Hujan</strong>
-                      <span className="text-slate-500 text-xs leading-relaxed">Sinyal mudah hilang, redaman membesar, dan rawan induksi petir saat cuaca buruk.</span>
+                      <strong className="text-slate-800">Upload Lambat (Asimetris)</strong>
+                      <p className="text-slate-500 text-xs mt-0.5">Kecepatan upload biasanya dibatasi sangat kecil, menyulitkan backup data &amp; video call.</p>
                     </div>
                   </li>
-                  <li className="flex items-start gap-3.5">
-                    <XCircle size={22} weight="fill" className="text-rose-500 shrink-0 mt-0.5" />
+                  <li className="flex gap-3">
+                    <XCircle size={20} className="text-rose-500 shrink-0 mt-0.5" weight="bold" />
                     <div>
-                      <strong className="text-slate-800 block font-bold">Sering Lag &amp; Ping Melompat</strong>
-                      <span className="text-slate-500 text-xs leading-relaxed">Jitter tinggi dan sering terjadi packet loss yang sangat mengganggu kenyamanan bermain game.</span>
-                    </div>
-                  </li>
-                  <li className="flex items-start gap-3.5">
-                    <XCircle size={22} weight="fill" className="text-rose-500 shrink-0 mt-0.5" />
-                    <div>
-                      <strong className="text-slate-800 block font-bold">Call Center Robot &amp; Antrian</strong>
-                      <span className="text-slate-500 text-xs leading-relaxed">Pelayanan lambat melalui sistem tiket otomatis yang memakan waktu berhari-hari untuk diperbaiki.</span>
+                      <strong className="text-slate-800">Sangat Sensitif Cuaca</strong>
+                      <p className="text-slate-500 text-xs mt-0.5">Sinyal gampang terputus-putus atau hilang total saat terjadi hujan deras atau petir.</p>
                     </div>
                   </li>
                 </ul>
-              </div>
-
-              <div className="pt-8 mt-6 border-t border-slate-200">
-                <span className="text-xs font-mono text-slate-400">
-                  Rentan penurunan performa seiring waktu
-                </span>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* 3. 4 PILAR JAMINAN MUTLAK (Asymmetrical Bento Grid - Clean, Punchy, Zero Redundancy) */}
+      {/* 3. TEKNOLOGI PENDUKUNG UTAMA */}
       <section className="py-24 bg-white relative">
-        <div className="max-w-7xl mx-auto px-6 space-y-12">
-          <div className="text-center max-w-2xl mx-auto space-y-3">
-            <span className="text-xs font-mono font-bold tracking-[0.2em] text-brand-dark uppercase">
-              Standar Layanan
+        <div className="max-w-7xl mx-auto px-6 space-y-16">
+          <div className="text-center max-w-3xl mx-auto space-y-3">
+            <span className="text-[11px] font-mono font-bold tracking-[0.2em] text-brand-dark uppercase block">
+              Detail Arsitektur Jaringan
             </span>
-            <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight text-slate-900 leading-tight">
-              4 Pilar Jaminan Mutlak
+            <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight">
+              Mengapa Jaringan Kami Begitu Stabil?
             </h2>
-            <p className="text-slate-600 text-sm md:text-base">
-              Tanpa janji berlebihan, inilah empat komitmen teknis yang menjadi fondasi seluruh layanan SGC Network.
+            <p className="text-slate-600 text-base leading-relaxed">
+              Kami berinvestasi pada kualitas perangkat keras dan pengaturan server berskala industri demi menghantarkan internet terbaik ke rumah Anda.
             </p>
           </div>
 
-          {/* Asymmetrical Bento Grid */}
-          <div className="grid gap-6 md:grid-cols-12 max-w-5xl mx-auto">
-            {/* Pillar 1: FTTH Dedicated (Col-span 7) */}
-            <div className="md:col-span-7 p-8 md:p-10 rounded-3xl bg-slate-900 text-white space-y-6 flex flex-col justify-between relative overflow-hidden shadow-lg group border border-slate-800">
-              <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-bl from-brand-dark/40 via-transparent to-transparent blur-2xl pointer-events-none" />
-              <div className="flex items-start justify-between relative z-10">
-                <div className="w-12 h-12 rounded-2xl bg-white/10 border border-white/15 flex items-center justify-center text-brand-light group-hover:scale-110 transition-transform">
+          <div className="grid gap-6 md:grid-cols-12 items-stretch max-w-6xl mx-auto">
+            {/* Pillar 1: GPON (Col-span 7) */}
+            <div className="md:col-span-7 p-8 md:p-10 rounded-3xl bg-slate-50 border border-slate-200/80 space-y-6 flex flex-col justify-between hover:border-slate-300 transition-all group shadow-2xs">
+              <div className="flex items-start justify-between">
+                <div className="w-12 h-12 rounded-2xl bg-white border border-slate-200/80 flex items-center justify-center text-brand-dark group-hover:bg-brand-dark group-hover:text-white transition-colors shadow-2xs">
                   <WifiHigh size={26} weight="bold" />
                 </div>
-                <span className="text-[10px] font-mono font-bold uppercase tracking-widest px-3 py-1 rounded-full bg-white/10 text-slate-300 border border-white/10">
-                  01 / Infrastruktur
+                <span className="text-[10px] font-mono font-bold uppercase tracking-widest px-3 py-1 rounded-full bg-slate-200/80 text-slate-600">
+                  01 / Arsitektur
                 </span>
               </div>
-              <div className="space-y-2 relative z-10">
-                <h3 className="text-2xl font-black tracking-tight">100% FTTH Dedicated</h3>
-                <p className="text-slate-300 text-sm leading-relaxed">
-                  Kabel serat optik ditarik langsung dari pusat server (ODC) eksklusif ke modem rumah atau bisnis Anda. Redaman serendah mungkin tanpa risiko rebutan bandwidth dengan tetangga.
+              <div className="space-y-2">
+                <h3 className="text-2xl font-bold text-slate-900">Teknologi FTTH &amp; GPON</h3>
+                <p className="text-slate-600 text-sm leading-relaxed">
+                  Kami menggunakan standardisasi jaringan serat optik FTTH (Fiber to the Home) dengan teknologi transmisi data GPON untuk menjaga integritas kecepatan tanpa degradasi sinyal dari pusat hingga titik ONT di dalam rumah Anda.
                 </p>
               </div>
             </div>
 
-            {/* Pillar 2: Redundant Backbone (Col-span 5) */}
-            <div className="md:col-span-5 p-8 md:p-10 rounded-3xl bg-brand-dark text-white space-y-6 flex flex-col justify-between shadow-lg group">
-              <div className="flex items-start justify-between">
-                <div className="w-12 h-12 rounded-2xl bg-white/15 border border-white/20 flex items-center justify-center text-white group-hover:scale-110 transition-transform">
-                  <CloudCheck size={26} weight="fill" />
+            {/* Pillar 2: Redundancy (Col-span 5 - Highlighted Blue) */}
+            <div className="md:col-span-5 p-8 md:p-10 rounded-3xl bg-slate-900 text-white space-y-6 flex flex-col justify-between hover:border-slate-800 transition-all group relative overflow-hidden shadow-md">
+              <div className="absolute w-48 h-48 rounded-full bg-brand-light/10 blur-2xl -bottom-10 -left-10 pointer-events-none" />
+              
+              <div className="flex items-start justify-between relative z-10">
+                <div className="w-12 h-12 rounded-2xl bg-white/10 flex items-center justify-center text-brand-light">
+                  <CloudCheck size={26} weight="bold" />
                 </div>
-                <span className="text-[10px] font-mono font-bold uppercase tracking-widest px-3 py-1 rounded-full bg-white/15 text-white">
+                <span className="text-[10px] font-mono font-bold uppercase tracking-widest px-3 py-1 rounded-full bg-white/10 text-brand-light border border-white/10">
                   02 / Proteksi
                 </span>
               </div>
-              <div className="space-y-2">
+              <div className="space-y-2 relative z-10">
                 <h3 className="text-2xl font-black tracking-tight">Redundant Backbone</h3>
                 <p className="text-brand-light text-sm leading-relaxed">
                   Jalur koneksi utama diproteksi oleh sistem cadangan otomatis <em className="underline decoration-white/40 not-italic font-semibold">(automatic failover)</em>, menjaga internet tetap aktif saat terjadi gangguan jalur.
@@ -286,7 +263,7 @@ export default function KeunggulanPage() {
           },
           {
             label: "Hubungi CS via WA",
-            href: "https://wa.me/6285179997972",
+            href: `https://wa.me/${whatsappCs1}`,
             isExternal: true,
             variant: "secondary",
           },

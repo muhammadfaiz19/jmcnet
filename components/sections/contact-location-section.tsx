@@ -2,11 +2,26 @@
 
 import React from "react";
 import { MapPin, Envelope, Phone } from "@phosphor-icons/react";
-import { WhatsappLogo } from "../whatsapp-icon";
-import { MapWrapper } from "../map-wrapper";
-import { CtaCardSection } from "../cta-card-section";
+import { WhatsappLogo } from "../layout/whatsapp-icon";
+import { MapWrapper } from "../ui/map-wrapper";
+import { CtaCardSection } from "./cta-card-section";
 
-export function ContactLocationSection() {
+import type { SiteSettings } from "@/types";
+
+export function ContactLocationSection({ settings }: { settings: SiteSettings | null }) {
+  const address = settings?.address || "Blok 04 Assa'idiyah RT.03 RW.03\nDesa Tegalgubug Lor, Kecamatan Arjawinangun\nKabupaten Cirebon, Jawa Barat 45162";
+  const email = settings?.email || "info@jmcnet.id";
+  const whatsappCs1 = settings?.whatsappCs1 || "6285179997972";
+  const whatsappCs2 = settings?.whatsappCs2 || "6285179997975";
+
+  // Format nomor agar rapi
+  const formattedCs1 = whatsappCs1.startsWith("62") 
+    ? `0${whatsappCs1.substring(2).replace(/(\d{4})(\d{4})(\d{4})/, "$1-$2-$3")}` 
+    : whatsappCs1;
+  const formattedCs2 = whatsappCs2.startsWith("62")
+    ? `0${whatsappCs2.substring(2).replace(/(\d{4})(\d{4})(\d{4})/, "$1-$2-$3")}`
+    : whatsappCs2;
+
   return (
     <>
       {/* 11. Contact CTA Section */}
@@ -17,15 +32,15 @@ export function ContactLocationSection() {
         bgClassName="py-20 bg-gradient-to-b from-slate-50 to-slate-100/60 border-t border-slate-200/80 relative"
         actions={[
           {
-            label: "CS 1: 0851-7999-7972",
-            href: "https://wa.me/6285179997972",
+            label: `CS 1: ${formattedCs1}`,
+            href: `https://wa.me/${whatsappCs1}`,
             isExternal: true,
             icon: <WhatsappLogo size={18} weight="fill" className="text-emerald-600" />,
             variant: "primary",
           },
           {
-            label: "CS 2: 0851-7999-7975",
-            href: "https://wa.me/6285179997975",
+            label: `CS 2: ${formattedCs2}`,
+            href: `https://wa.me/${whatsappCs2}`,
             isExternal: true,
             icon: <WhatsappLogo size={18} weight="fill" className="text-emerald-400" />,
             variant: "secondary",
@@ -44,7 +59,7 @@ export function ContactLocationSection() {
           {/* Info Details */}
           <div className="lg:col-span-5 space-y-6">
             <h3 className="text-xl font-bold text-slate-800">
-              Kontak & Lokasi Kantor
+               Kontak & Lokasi Kantor
             </h3>
             <p className="text-slate-600 text-sm leading-relaxed max-w-[45ch]">
               Kami selalu siap melayani pertanyaan Anda mengenai ketersediaan
@@ -58,12 +73,8 @@ export function ContactLocationSection() {
                   <h4 className="text-xs font-bold text-slate-400 uppercase tracking-wider">
                     Alamat Kantor
                   </h4>
-                  <p className="text-slate-700 text-sm mt-1 leading-relaxed">
-                    Blok 04 Assa&apos;idiyah RT.03 RW.03
-                    <br />
-                    Desa Tegalgubug Lor, Kecamatan Arjawinangun
-                    <br />
-                    Kabupaten Cirebon, Jawa Barat 45162
+                  <p className="text-slate-700 text-sm mt-1 leading-relaxed whitespace-pre-line">
+                    {address}
                   </p>
                 </div>
               </div>
@@ -75,10 +86,10 @@ export function ContactLocationSection() {
                     Email
                   </h4>
                   <a
-                    href="mailto:info@jmcnet.id"
+                    href={`mailto:${email}`}
                     className="text-slate-700 hover:text-brand-dark text-sm mt-1 block"
                   >
-                    info@jmcnet.id
+                    {email}
                   </a>
                 </div>
               </div>
@@ -91,20 +102,20 @@ export function ContactLocationSection() {
                   </h4>
                   <div className="space-y-1 mt-1">
                     <a
-                      href="https://wa.me/6285179997972"
+                      href={`https://wa.me/${whatsappCs1}`}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-slate-700 hover:text-brand-dark text-sm block"
                     >
-                      Cs 1: 0851-7999-7972
+                      Cs 1: {formattedCs1}
                     </a>
                     <a
-                      href="https://wa.me/6285179997975"
+                      href={`https://wa.me/${whatsappCs2}`}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-slate-700 hover:text-brand-dark text-sm block"
                     >
-                      Cs 2: 0851-7999-7975
+                      Cs 2: {formattedCs2}
                     </a>
                   </div>
                 </div>

@@ -6,8 +6,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion } from "motion/react";
+import type { SiteSettings } from "@/types";
 
-export function Navbar() {
+export function Navbar({ settings }: { settings: SiteSettings | null }) {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
@@ -24,6 +25,9 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Sembunyikan navbar di halaman admin
+  if (pathname && pathname.startsWith("/admin")) return null;
+
   const navLinks = [
     { label: "Beranda", href: "/" },
     { label: "Tentang Kami", href: "/tentang" },
@@ -39,6 +43,8 @@ export function Navbar() {
     return pathname === href || pathname?.startsWith(`${href}/`);
   };
 
+  const logoUrl = settings?.logo || "/logo-removebg.png";
+
   return (
     <div className="sticky top-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200/80 shadow-sm transition-all duration-300">
       <header className="max-w-7xl mx-auto py-3.5 px-4 sm:px-8">
@@ -49,7 +55,7 @@ export function Navbar() {
             className="flex items-center gap-2 group transition-transform hover:scale-105 shrink-0 pl-2"
           >
             <Image
-              src="/logo-removebg.png"
+              src={logoUrl}
               alt="PT Jaringan Multimedia Cirebon Logo"
               width={110}
               height={32}
