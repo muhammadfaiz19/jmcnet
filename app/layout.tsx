@@ -50,7 +50,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "JMCNET - Provider Internet Cepat & Stabil 100% Fiber Optic Cirebon",
     description:
-      "Koneksi internet fiber optic murni tanpa batas kuota di wilayah Cirebon. Pilihan paket hemat mulai Rp 166.500/bulan dengan gratis maintenance & sewa modem.",
+      "Koneksi internet fiber optic murni tanpa batas kuota di wilayah Cirebon. Pilihan paket hemat mulai Rp 130.000/bulan dengan gratis maintenance & sewa modem.",
     url: "https://jmcnet.id",
     siteName: "JMCNET",
     locale: "id_ID",

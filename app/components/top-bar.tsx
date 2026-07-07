@@ -1,7 +1,8 @@
 "use client";
 
 import React from "react";
-import { WhatsappLogo, Phone, MapPin, Clock } from "@phosphor-icons/react";
+import { Phone, MapPin, Clock } from "@phosphor-icons/react";
+import { WhatsappLogo } from "./whatsapp-icon";
 
 export function TopBar() {
   return (
@@ -16,7 +17,7 @@ export function TopBar() {
           <span className="text-slate-700 hidden md:inline">|</span>
           <div className="hidden md:flex items-center gap-1.5 text-slate-400 font-mono">
             <Clock size={14} className="text-brand-light shrink-0" />
-            <span>Layanan CS &amp; Teknis 24/7</span>
+            <span>Jam Operasional: Senin - Sabtu (09:00 - 18:00)</span>
           </div>
         </div>
 

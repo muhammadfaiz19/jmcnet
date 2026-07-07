@@ -4,7 +4,6 @@ import React, { useState } from "react";
 import { PageHeader } from "../components/page-header";
 import { MapWrapper } from "../components/map-wrapper";
 import {
-  WhatsappLogo,
   MapPin,
   Envelope,
   Phone,
@@ -13,6 +12,7 @@ import {
   Clock,
   ChatCircleText,
 } from "@phosphor-icons/react";
+import { WhatsappLogo } from "../components/whatsapp-icon";
 
 export default function KontakPage() {
   const [formData, setFormData] = useState({
@@ -33,7 +33,7 @@ export default function KontakPage() {
     <div className="flex-1 bg-white text-slate-900 font-sans selection:bg-brand-light/20 selection:text-brand-dark overflow-x-hidden">
       {/* Hero Header */}
       <PageHeader
-        eyebrow="LAYANAN PELANGGAN 24/7"
+        eyebrow="LAYANAN PELANGGAN &amp; TEKNIS"
         title="Hubungi Tim"
         highlight="JMCNET Cirebon."
         subtitle="Punya pertanyaan ketersediaan jaringan atau mengalami kendala teknis? Tim kami siap memberikan solusi terbaik dengan cepat dan responsif."
@@ -106,8 +106,8 @@ export default function KontakPage() {
               <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">
                 Jam Operasional
               </span>
-              <h3 className="text-lg font-bold mt-1">24 Jam / 7 Hari</h3>
-              <p className="text-xs text-slate-300 mt-1">Layanan teknis siaga setiap hari.</p>
+              <h3 className="text-base font-bold mt-1">Senin - Sabtu: 09:00 - 18:00</h3>
+              <p className="text-xs text-rose-300 font-semibold mt-1">Minggu: Libur</p>
             </div>
           </div>
         </div>

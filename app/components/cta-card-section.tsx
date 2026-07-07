@@ -51,12 +51,12 @@ export function CtaCardSection({
           </div>
 
           {/* Right / Actions Column */}
-          <div className="lg:col-span-5 flex flex-wrap gap-3.5 justify-start lg:justify-end relative z-10">
+          <div className="lg:col-span-5 flex flex-col sm:flex-row flex-wrap gap-3.5 justify-start lg:justify-end relative z-10 w-full lg:w-auto">
             {actions.map((action, idx) => {
               const variant = action.variant || (idx === 0 ? "primary" : "secondary");
 
               let buttonStyle =
-                "inline-flex h-14 items-center justify-center gap-2.5 rounded-2xl px-7 text-sm font-bold transition-all active:scale-[0.98] shadow-lg";
+                "w-full sm:w-auto inline-flex h-14 items-center justify-center gap-2.5 rounded-2xl px-7 text-sm font-bold transition-all active:scale-[0.98] shadow-lg";
 
               if (variant === "primary") {
                 buttonStyle +=

@@ -18,7 +18,7 @@ export function TestimonialsSection() {
       quote:
         "Sangat terbantu untuk operasional toko online kami. Jaringan internetnya murni tanpa FUP, membuat proses upload katalog dan membalas chat pelanggan tanpa hambatan.",
       name: "Dewi Lestari",
-      role: "Pemilik UMKM Toko Pakaian (Sumber)",
+      role: "Pemilik UMKM Toko Pakaian (Tegalgubug)",
       initials: "DL",
     },
     {
@@ -26,7 +26,7 @@ export function TestimonialsSection() {
       quote:
         "Koneksi internet JMCNET luar biasa stabil. Tim support teknisnya sangat sigap membantu ketika kami membutuhkan konfigurasi jaringan kantor tambahan.",
       name: "Rian Wijaya",
-      role: "Manajer Operasional Kantor (Kesambi)",
+      role: "Manajer Operasional Kantor (Arjawinangun)",
       initials: "RW",
     },
     {
@@ -34,7 +34,7 @@ export function TestimonialsSection() {
       quote:
         "Harga sangat terjangkau dengan kualitas kecepatan yang memuaskan. Saya bisa meeting online seharian tanpa gangguan putus-putus.",
       name: "Andi Saputra",
-      role: "Freelancer (Kedawung)",
+      role: "Freelancer (Tegalgubug Lor)",
       initials: "AS",
     },
   ];

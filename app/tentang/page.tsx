@@ -68,7 +68,7 @@ export default function TentangPage() {
                 </li>
                 <li className="flex items-start gap-3">
                   <CheckCircle size={20} className="text-emerald-500 shrink-0 mt-1" weight="fill" />
-                  <span>Memberikan pelayanan teknis dan customer support lokal 24 jam sehari yang sigap dan solutif.</span>
+                  <span>Memberikan pelayanan teknis dan customer support lokal di jam operasional (Senin - Sabtu: 09.00 - 18.00) yang sigap dan solutif.</span>
                 </li>
               </ul>
             </div>
@@ -166,9 +166,9 @@ export default function TentangPage() {
                 <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-brand-dark to-brand-light text-white flex items-center justify-center shadow-md shadow-brand-light/20 group-hover:scale-105 transition-transform">
                   <UsersThree size={26} weight="fill" />
                 </div>
-                <h3 className="text-lg font-bold text-slate-900">Responsif 24/7</h3>
+                <h3 className="text-lg font-bold text-slate-900">Responsif &amp; Solutif</h3>
                 <p className="text-slate-600 text-xs md:text-sm leading-relaxed">
-                  Tim dukungan pelanggan yang bisa dihubungi kapan saja melalui WhatsApp dengan penyelesaian cepat.
+                  Tim dukungan pelanggan yang siap membantu di jam operasional (Senin - Sabtu: 09.00 - 18.00) via WhatsApp dengan penyelesaian cepat.
                 </p>
               </div>
             </div>

@@ -6,7 +6,7 @@ import { PageHeader } from "../components/page-header";
 import { CtaCardSection } from "../components/cta-card-section";
 import {
   Check,
-  WhatsappLogo,
+  X,
   DownloadSimple,
   Buildings,
   House,
@@ -15,6 +15,7 @@ import {
   Storefront,
   Timer,
 } from "@phosphor-icons/react";
+import { WhatsappLogo } from "../components/whatsapp-icon";
 
 export default function PaketPage() {
   return (
@@ -30,10 +31,87 @@ export default function PaketPage() {
       {/* Main Packages Grid */}
       <section className="py-24 bg-gradient-to-b from-slate-50 via-sky-50/20 to-white border-y border-slate-100 relative">
         <div className="max-w-7xl mx-auto px-6 space-y-16">
-          {/* 2. PRICING CARDS (Tanpa pengulangan teks) */}
-          <div className="grid gap-8 md:grid-cols-3 items-stretch">
+          {/* 2. PRICING CARDS */}
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4 items-stretch">
+            {/* Package 0: SGC HEMAT */}
+            <div className="bg-white rounded-3xl border border-slate-200/80 p-7 flex flex-col justify-between relative shadow-xs hover:shadow-md transition-all duration-300 hover:-translate-y-1 group">
+              <div className="space-y-6">
+                <div className="flex justify-between items-start">
+                  <div>
+                    <span className="text-[10px] font-extrabold uppercase tracking-widest text-slate-600 bg-slate-100 px-3 py-1 rounded-full border border-slate-200/60">
+                      Pemula / Hemat
+                    </span>
+                    <h3 className="text-2xl font-black text-slate-900 mt-3">SGC HEMAT</h3>
+                    <p className="text-slate-500 text-xs mt-1">
+                      Pilihan ekonomis untuk browsing harian &amp; sosial media.
+                    </p>
+                  </div>
+                  <House size={28} className="text-slate-400 shrink-0" />
+                </div>
+
+                <div className="flex flex-col gap-1.5 bg-slate-50 p-5 rounded-2xl border border-slate-100">
+                  <div className="flex items-baseline gap-1">
+                    <span className="text-4xl font-black text-slate-900">5</span>
+                    <span className="text-xl font-bold text-slate-600">Mbps</span>
+                  </div>
+                  <div className="pt-3 border-t border-slate-200/60 mt-1">
+                    <div className="flex items-baseline gap-1">
+                      <span className="text-2xl font-black text-brand-dark">Rp 130.000</span>
+                      <span className="text-xs text-slate-500 font-semibold">/ bulan</span>
+                    </div>
+                    <div className="text-[11px] text-slate-500 mt-2 space-y-1">
+                      <p className="flex justify-between">
+                        <span>Biaya Aktivasi Awal:</span>
+                        <span className="font-semibold text-slate-700">Rp 150.000</span>
+                      </p>
+                      <p className="flex justify-between font-bold text-slate-800 border-t border-slate-200/60 pt-1">
+                        <span>Total Bayar Pertama:</span>
+                        <span className="text-brand-dark">Rp 280.000</span>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="pt-2">
+                  <p className="text-xs font-mono font-bold uppercase tracking-wider text-slate-400 mb-3">
+                    Rekomendasi &amp; Fasilitas:
+                  </p>
+                  <ul className="space-y-2.5">
+                    <li className="flex items-start gap-2.5 text-xs text-slate-700 font-medium">
+                      <Check size={16} className="text-emerald-500 mt-0.5 shrink-0" weight="bold" />
+                      <span>Lancarkan <strong>1 hingga 2 perangkat</strong> bersamaan</span>
+                    </li>
+                    <li className="flex items-start gap-2.5 text-xs text-slate-700 font-medium">
+                      <Check size={16} className="text-emerald-500 mt-0.5 shrink-0" weight="bold" />
+                      <span>Browsing, WhatsApp, &amp; media sosial lancar</span>
+                    </li>
+                    <li className="flex items-start gap-2.5 text-xs text-slate-700 font-medium">
+                      <Check size={16} className="text-emerald-500 mt-0.5 shrink-0" weight="bold" />
+                      <span>Streaming YouTube &amp; hiburan harian</span>
+                    </li>
+                    <li className="flex items-start gap-2.5 text-xs text-slate-500 font-medium">
+                      <X size={16} className="text-rose-500 mt-0.5 shrink-0" weight="bold" />
+                      <span><strong>Tanpa</strong> bonus hotspot member</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              <div className="pt-8">
+                <a
+                  href="https://wa.me/6285179997972?text=Halo%20JMCNET,%20saya%20tertarik%20untuk%20langganan%20paket%20SGC%20HEMAT%205%20Mbps."
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full inline-flex h-12 items-center justify-center gap-2 rounded-xl bg-slate-100 border border-slate-200/80 text-xs font-bold text-slate-800 hover:bg-slate-200 active:scale-[0.98] transition-all shadow-2xs"
+                >
+                  <WhatsappLogo size={16} weight="fill" className="text-emerald-600" />
+                  <span>Daftar via WA</span>
+                </a>
+              </div>
+            </div>
+
             {/* Package 1: SGC LITE */}
-            <div className="bg-white rounded-3xl border border-slate-200/80 p-8 flex flex-col justify-between relative shadow-xs hover:shadow-md transition-all duration-300 hover:-translate-y-1 group">
+            <div className="bg-white rounded-3xl border border-slate-200/80 p-7 flex flex-col justify-between relative shadow-xs hover:shadow-md transition-all duration-300 hover:-translate-y-1 group">
               <div className="space-y-6">
                 <div className="flex justify-between items-start">
                   <div>
@@ -104,13 +182,13 @@ export default function PaketPage() {
                   className="w-full inline-flex h-12 items-center justify-center gap-2 rounded-xl bg-slate-100 border border-slate-200/80 text-xs font-bold text-slate-800 hover:bg-slate-200 active:scale-[0.98] transition-all shadow-2xs"
                 >
                   <WhatsappLogo size={16} weight="fill" className="text-emerald-600" />
-                  <span>Daftar SGC LITE via WhatsApp</span>
+                  <span>Daftar via WA</span>
                 </a>
               </div>
             </div>
 
             {/* Package 2: SGC SOCIALLY (Terlaris) */}
-            <div className="bg-white rounded-3xl border-2 border-brand-dark p-8 flex flex-col justify-between relative shadow-lg ring-4 ring-brand-dark/10 transition-all duration-300 hover:-translate-y-1 group">
+            <div className="bg-white rounded-3xl border-2 border-brand-dark p-7 flex flex-col justify-between relative shadow-lg ring-4 ring-brand-dark/10 transition-all duration-300 hover:-translate-y-1 group">
               <div className="absolute -top-3.5 left-1/2 transform -translate-x-1/2 px-4 py-1 rounded-full bg-brand-dark text-[10px] font-black tracking-widest text-white uppercase shadow-md">
                 Paling Diminati
               </div>
@@ -184,13 +262,13 @@ export default function PaketPage() {
                   className="w-full inline-flex h-12 items-center justify-center gap-2 rounded-xl bg-brand-dark text-xs font-bold text-white hover:bg-brand-dark/95 active:scale-[0.98] transition-all shadow-md shadow-brand-dark/20"
                 >
                   <WhatsappLogo size={16} weight="fill" />
-                  <span>Daftar SGC SOCIALLY via WhatsApp</span>
+                  <span>Daftar via WA</span>
                 </a>
               </div>
             </div>
 
             {/* Package 3: SGC FAMILY */}
-            <div className="bg-white rounded-3xl border border-slate-200/80 p-8 flex flex-col justify-between relative shadow-xs hover:shadow-md transition-all duration-300 hover:-translate-y-1 group">
+            <div className="bg-white rounded-3xl border border-slate-200/80 p-7 flex flex-col justify-between relative shadow-xs hover:shadow-md transition-all duration-300 hover:-translate-y-1 group">
               <div className="space-y-6">
                 <div className="flex justify-between items-start">
                   <div>
@@ -261,7 +339,7 @@ export default function PaketPage() {
                   className="w-full inline-flex h-12 items-center justify-center gap-2 rounded-xl bg-slate-100 border border-slate-200/80 text-xs font-bold text-slate-800 hover:bg-slate-200 active:scale-[0.98] transition-all shadow-2xs"
                 >
                   <WhatsappLogo size={16} weight="fill" className="text-emerald-600" />
-                  <span>Daftar SGC FAMILY via WhatsApp</span>
+                  <span>Daftar via WA</span>
                 </a>
               </div>
             </div>
@@ -417,7 +495,7 @@ export default function PaketPage() {
               </div>
               <div className="flex items-center gap-3 text-sm font-medium text-slate-700">
                 <Check size={18} className="text-brand-dark shrink-0" weight="bold" />
-                <span>Pembayaran rutin jatuh tempo setiap tanggal 1 setiap bulannya.</span>
+                <span>Pembayaran rutin jatuh tempo tanggal 5 (maksimal tgl 10 sebelum terkena isolir).</span>
               </div>
               <div className="flex items-center gap-3 text-sm font-medium text-slate-700">
                 <Check size={18} className="text-brand-dark shrink-0" weight="bold" />

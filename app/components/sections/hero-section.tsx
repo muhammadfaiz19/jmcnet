@@ -19,7 +19,7 @@ export function HeroSection() {
             <div className="flex flex-wrap items-center gap-x-3 gap-y-2 text-xs font-mono tracking-[0.2em] text-brand-dark uppercase">
               <span className="w-6 h-[2px] bg-brand-dark" />
               <span className="font-bold tracking-[0.25em]">PT Jaringan Multimedia Cirebon</span>
-              <span className="text-slate-400 font-light">//</span>
+              <span className="text-slate-400 font-light">{"//"}</span>
               <span className="text-slate-500">100% Fiber Optic</span>
             </div>
             
@@ -74,9 +74,9 @@ export function HeroSection() {
           </div>
           <div>
             <span className="block text-slate-900 font-bold text-sm sm:text-base mb-1 tracking-normal font-sans">
-              24/7 SUPPORT
+              SUPPORT CS
             </span>
-            Teknisi Lokal Cirebon
+            Senin - Sabtu (09.00 - 18.00)
           </div>
         </div>
       </div>

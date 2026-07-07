@@ -28,11 +28,11 @@ export function StatsSection() {
             </p>
           </div>
           <div className="space-y-1.5">
-            <p className="text-4xl md:text-5xl font-black text-brand-light tracking-tight">
-              24/7
+            <p className="text-3xl md:text-4xl font-black text-brand-light tracking-tight">
+              09.00 - 18.00
             </p>
             <p className="text-xs md:text-sm font-semibold text-slate-300 font-mono uppercase tracking-wider">
-              Dukungan Teknis
+              Jam Operasional CS
             </p>
           </div>
           <div className="space-y-1.5">

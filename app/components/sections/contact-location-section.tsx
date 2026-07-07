@@ -1,7 +1,8 @@
 "use client";
 
 import React from "react";
-import { WhatsappLogo, MapPin, Envelope, Phone } from "@phosphor-icons/react";
+import { MapPin, Envelope, Phone } from "@phosphor-icons/react";
+import { WhatsappLogo } from "../whatsapp-icon";
 import { MapWrapper } from "../map-wrapper";
 import { CtaCardSection } from "../cta-card-section";
 

@@ -66,7 +66,7 @@ export function WhyChooseUsSection() {
                   : "text-slate-600 hover:text-slate-900 hover:bg-slate-200/50"
               }`}
             >
-              Support 24/7
+              Support CS
             </button>
             <button
               onClick={() => setActiveTab("harga")}
@@ -108,7 +108,7 @@ export function WhyChooseUsSection() {
             </div>
           )}
 
-          {/* 2. Support 24/7 - Dark Brand Accent (Layanan) */}
+          {/* 2. Support CS - Dark Brand Accent (Layanan) */}
           {(activeTab === "semua" || activeTab === "layanan") && (
             <div className="md:col-span-2 lg:col-span-5 p-8 rounded-3xl bg-brand-dark text-white space-y-6 flex flex-col justify-between shadow-md group">
               <div className="flex items-start justify-between">
@@ -116,13 +116,13 @@ export function WhyChooseUsSection() {
                   <Headset size={26} weight="fill" />
                 </div>
                 <span className="text-[10px] font-mono font-bold uppercase tracking-widest px-3 py-1 rounded-full bg-white/15 text-white">
-                  Siaga 24 Jam
+                  Siaga Jam Kerja
                 </span>
               </div>
               <div className="space-y-2">
-                <h3 className="text-2xl font-black tracking-tight">Support Lokal 24/7</h3>
+                <h3 className="text-2xl font-black tracking-tight">Support Lokal Cirebon</h3>
                 <p className="text-brand-light text-sm leading-relaxed">
-                  Tim teknisi dan customer service lokal di Cirebon yang responsif siap membantu memecahkan kendala teknis Anda kapan saja via WhatsApp.
+                  Tim teknisi dan customer service lokal di Cirebon siap membantu memecahkan kendala teknis Anda di jam operasional (Senin - Sabtu: 09.00 - 18.00 WIB) via WhatsApp.
                 </p>
               </div>
               <div className="pt-4 border-t border-white/15 text-xs font-bold text-white flex items-center justify-between">

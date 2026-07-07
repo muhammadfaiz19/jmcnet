@@ -29,7 +29,17 @@ const faqs: FAQItem[] = [
   {
     question: "Bagaimana sistem pembayaran bulanan dan kapan jatuh temponya?",
     answer:
-      "Sistem berlangganan bersifat PRABAYAR (pembayaran dilakukan di muka). Jatuh tempo pembayaran adalah setiap tanggal 1 (satu) setiap bulannya melalui transfer ke rekening resmi kami: Bank BRI 0107010045 - 39304 a.n. PT JARINGAN MULTIMEDIA CIREBON.",
+      "Sistem berlangganan bersifat PRABAYAR (pembayaran dilakukan di muka). Jatuh tempo pembayaran tagihan bulanan adalah setiap tanggal 5, dengan batas maksimal pembayaran tanggal 10. Jika melewati tanggal 10 tanpa konfirmasi sebelumnya kepada admin, maka koneksi internet terancam terkena isolir sementara. Pembayaran dapat dilakukan melalui transfer ke rekening resmi kami: Bank BRI 0107010045 - 39304 a.n. PT JARINGAN MULTIMEDIA CIREBON.",
+  },
+  {
+    question: "Apakah ada biaya untuk ganti password atau nama Wi-Fi (SSID)?",
+    answer:
+      "Tidak ada biaya sama sekali (Free). Anda dapat meminta bantuan ganti password atau nama Wi-Fi kapanpun secara gratis dengan menghubungi Customer Service kami via WhatsApp.",
+  },
+  {
+    question: "Apakah pindah lokasi atau pemindahan alat Wi-Fi dikenakan biaya?",
+    answer:
+      "Ya, untuk permintaan pindah alat Wi-Fi atau pemindahan jalur modem akan dikenakan biaya tambahan (charge). Besaran biaya tergantung pada jarak dan lokasi perpindahan tersebut.",
   },
   {
     question: "Apakah modem router Wi-Fi dipinjamkan secara gratis?",
@@ -50,7 +60,7 @@ const faqs: FAQItem[] = [
   {
     question: "Bagaimana jika terjadi gangguan atau penurunan kecepatan?",
     answer:
-      "Tim Support kami siap membantu 24x7. Anda dapat menghubungi Customer Service kami melalui WhatsApp, Telepon, atau Email. Teknisi kami akan segera memecahkan masalah atau melakukan kunjungan jika diperlukan.",
+      "Tim Support kami siap membantu selama jam operasional (Senin - Sabtu: 09:00 - 18:00 WIB, Minggu Libur). Anda dapat menghubungi Customer Service kami melalui WhatsApp, Telepon, atau Email. Teknisi kami akan segera memecahkan masalah atau melakukan kunjungan jika diperlukan.",
   },
   {
     question: "Bagaimana cara mendaftar dan berlangganan JMCNET?",

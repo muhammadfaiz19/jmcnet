@@ -14,8 +14,8 @@ import {
   ClipboardText,
   Wrench,
   WifiHigh,
-  WhatsappLogo,
 } from "@phosphor-icons/react";
+import { WhatsappLogo } from "../components/whatsapp-icon";
 
 export default function PanduanBerlanggananPage() {
   return (
@@ -54,7 +54,7 @@ export default function PanduanBerlanggananPage() {
                   <span>Pilih Paket &amp; Registrasi</span>
                 </h3>
                 <p className="text-slate-600 text-sm leading-relaxed">
-                  Pilih paket (16 Mbps, 26 Mbps, atau 56 Mbps). Kirim foto identitas KTP beserta alamat pasang via WhatsApp atau isi formulir PDF pendaftaran.
+                  Pilih paket (5 Mbps, 16 Mbps, 26 Mbps, atau 56 Mbps). Kirim foto identitas KTP beserta alamat pasang via WhatsApp atau isi formulir PDF pendaftaran.
                 </p>
               </div>
             </div>
@@ -193,7 +193,7 @@ export default function PanduanBerlanggananPage() {
                   3
                 </span>
                 <p>
-                  Pembayaran tagihan bulanan jatuh tempo setiap tanggal <strong>1 (satu)</strong> setiap bulannya.
+                  Pembayaran tagihan bulanan jatuh tempo setiap tanggal <strong>5</strong> (batas maksimal tanggal <strong>10</strong> setiap bulannya).
                 </p>
               </div>
               <div className="flex gap-3">
@@ -201,7 +201,7 @@ export default function PanduanBerlanggananPage() {
                   4
                 </span>
                 <p>
-                  Pemutusan sementara/sepihak dapat dilakukan apabila pelanggan tidak melakukan pelunasan tagihan sampai batas waktu yang telah ditentukan.
+                  Pemutusan sementara (isolir layanan) dapat dilakukan apabila pelanggan tidak melakukan pembayaran melewati tanggal 10 tanpa adanya konfirmasi terlebih dahulu kepada admin CS.
                 </p>
               </div>
               <div className="flex gap-3">

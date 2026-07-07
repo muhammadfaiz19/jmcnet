@@ -42,7 +42,7 @@ export function TermsPaymentSection() {
               </span>
               <p>
                 Pembayaran jatuh tempo setiap tanggal{" "}
-                <strong>1 (satu)</strong> setiap bulannya.
+                <strong>5</strong>, batas maksimal tanggal <strong>10</strong> setiap bulannya.
               </p>
             </div>
             <div className="flex gap-3">
@@ -50,8 +50,8 @@ export function TermsPaymentSection() {
                 4
               </span>
               <p>
-                Pemutusan sepihak dapat dilakukan apabila pelanggan tidak
-                melakukan pembayaran sampai waktu yang telah ditentukan.
+                Pemutusan sementara (isolir layanan) dapat dilakukan apabila pelanggan
+                melewati tanggal 10 tanpa adanya konfirmasi terlebih dahulu kepada admin CS.
               </p>
             </div>
             <div className="flex gap-3">
