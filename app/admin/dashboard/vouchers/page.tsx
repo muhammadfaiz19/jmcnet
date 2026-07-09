@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { voucherPlanService } from "@/services/voucherPlan.service";
 import type { VoucherPlan } from "@/types";
+import { AlertDialog } from "@/components/ui/alert-dialog";
 import {
   Plus,
   Pencil,
@@ -23,6 +24,11 @@ export default function AdminVouchersPage() {
   const [modalOpen, setModalOpen] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
   const [currentId, setCurrentId] = useState<number | null>(null);
+
+  // State untuk delete modal kustom
+  const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
+  const [idToDelete, setIdToDelete] = useState<number | null>(null);
+  const [isDeleting, setIsDeleting] = useState(false);
 
   // Field form
   const [name, setName] = useState("");
@@ -122,10 +128,16 @@ export default function AdminVouchersPage() {
   };
 
   // Aksi Hapus voucher
-  const handleDelete = async (id: number) => {
-    if (!confirm("Apakah Anda yakin ingin menghapus voucher plan ini?")) return;
+  const handleDeleteClick = (id: number) => {
+    setIdToDelete(id);
+    setDeleteDialogOpen(true);
+  };
+
+  const handleConfirmDelete = async () => {
+    if (idToDelete === null) return;
+    setIsDeleting(true);
     try {
-      const res = await voucherPlanService.delete(id);
+      const res = await voucherPlanService.delete(idToDelete);
       if (res.success) {
         setSuccess("Voucher plan berhasil dihapus!");
         setTimeout(() => setSuccess(""), 3000);
@@ -136,6 +148,10 @@ export default function AdminVouchersPage() {
     } catch (err: any) {
       console.error(err);
       setError("Gagal menghapus voucher plan.");
+    } finally {
+      setIsDeleting(false);
+      setDeleteDialogOpen(false);
+      setIdToDelete(null);
     }
   };
 
@@ -285,7 +301,7 @@ export default function AdminVouchersPage() {
                           <Pencil size={14} weight="bold" />
                         </button>
                         <button
-                          onClick={() => handleDelete(v.id)}
+                          onClick={() => handleDeleteClick(v.id)}
                           className="p-2 bg-slate-100 hover:bg-red-500 hover:text-white rounded-xl transition-all cursor-pointer text-slate-600"
                           title="Hapus"
                         >
@@ -504,6 +520,19 @@ export default function AdminVouchersPage() {
           </div>
         </div>
       )}
+
+      {/* AlertDialog Kustom untuk konfirmasi hapus */}
+      <AlertDialog
+        isOpen={deleteDialogOpen}
+        onClose={() => {
+          setDeleteDialogOpen(false);
+          setIdToDelete(null);
+        }}
+        onConfirm={handleConfirmDelete}
+        title="Hapus Voucher Hotspot"
+        description="Apakah Anda yakin ingin menghapus voucher plan ini? Tindakan ini tidak dapat dibatalkan."
+        isLoading={isDeleting}
+      />
     </div>
   );
 }

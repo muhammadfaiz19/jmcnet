@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { chatbotService } from "@/services/chatbot.service";
 import type { ChatbotContext, ChatbotFile } from "@/types";
+import { AlertDialog } from "@/components/ui/alert-dialog";
 import {
   Robot,
   FloppyDisk,
@@ -34,6 +35,10 @@ export default function AdminChatbotPage() {
   const [filesLoading, setFilesLoading] = useState(true);
   const [uploading, setUploading] = useState(false);
   const [deletingId, setDeletingId] = useState<number | null>(null);
+
+  // State untuk delete modal kustom
+  const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
+  const [fileIdToDelete, setFileIdToDelete] = useState<number | null>(null);
 
   // ==========================================
   // FUNGSI KONTEKS TEKS
@@ -113,9 +118,14 @@ export default function AdminChatbotPage() {
     }
   };
 
-  const handleDeleteFile = async (id: number) => {
-    if (!confirm("Apakah Anda yakin ingin menghapus berkas referensi ini?")) return;
+  const handleDeleteFileClick = (id: number) => {
+    setFileIdToDelete(id);
+    setDeleteDialogOpen(true);
+  };
 
+  const handleConfirmDeleteFile = async () => {
+    if (fileIdToDelete === null) return;
+    const id = fileIdToDelete;
     setDeletingId(id);
     try {
       const res = await chatbotService.deleteFile(id);
@@ -127,6 +137,8 @@ export default function AdminChatbotPage() {
       alert("Gagal menghapus berkas referensi.");
     } finally {
       setDeletingId(null);
+      setFileIdToDelete(null);
+      setDeleteDialogOpen(false);
     }
   };
 
@@ -288,6 +300,17 @@ export default function AdminChatbotPage() {
             </div>
           </div>
 
+          {/* Peringatan Token Limit */}
+          <div className="p-5 bg-amber-500/10 border border-amber-500/25 rounded-3xl flex items-start gap-3 text-slate-800">
+            <WarningCircle size={20} weight="fill" className="text-amber-500 flex-shrink-0 mt-0.5 animate-pulse" />
+            <div className="text-xs sm:text-sm space-y-1">
+              <p className="font-extrabold text-amber-800">⚠️ Peringatan Penggunaan Token:</p>
+              <p className="leading-relaxed text-slate-600">
+                Mengunggah berkas dengan ukuran besar atau berisi sangat banyak teks akan mengonsumsi kuota token API LLM/Chatbot dengan cepat. Untuk menghindari pembatasan kuota (rate limit) atau biaya berlebih, pastikan hanya mengunggah dokumen penting dan ringkas.
+              </p>
+            </div>
+          </div>
+
           {/* Area Upload File */}
           <div className="bg-white p-6 sm:p-8 rounded-[2rem] border border-slate-200 shadow-sm">
             <label
@@ -381,7 +404,7 @@ export default function AdminChatbotPage() {
                     </a>
 
                     <button
-                      onClick={() => handleDeleteFile(file.id)}
+                      onClick={() => handleDeleteFileClick(file.id)}
                       disabled={deletingId === file.id}
                       className="p-2 bg-slate-100 hover:bg-red-500 text-slate-600 hover:text-white rounded-xl transition-all cursor-pointer border border-slate-200 disabled:opacity-50"
                       title="Hapus File"
@@ -399,6 +422,19 @@ export default function AdminChatbotPage() {
           )}
         </div>
       )}
+
+      {/* AlertDialog Kustom untuk konfirmasi hapus */}
+      <AlertDialog
+        isOpen={deleteDialogOpen}
+        onClose={() => {
+          setDeleteDialogOpen(false);
+          setFileIdToDelete(null);
+        }}
+        onConfirm={handleConfirmDeleteFile}
+        title="Hapus Berkas Referensi"
+        description="Apakah Anda yakin ingin menghapus berkas referensi ini? Tindakan ini tidak dapat dibatalkan."
+        isLoading={deletingId !== null}
+      />
     </div>
   );
 }

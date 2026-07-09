@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { testimonialService } from "@/services/testimonial.service";
 import type { Testimonial } from "@/types";
+import { AlertDialog } from "@/components/ui/alert-dialog";
 import {
   Plus,
   Pencil,
@@ -23,6 +24,11 @@ export default function AdminTestimonialsPage() {
   const [modalOpen, setModalOpen] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
   const [currentId, setCurrentId] = useState<number | null>(null);
+
+  // State untuk delete modal kustom
+  const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
+  const [idToDelete, setIdToDelete] = useState<number | null>(null);
+  const [isDeleting, setIsDeleting] = useState(false);
 
   // Field form
   const [name, setName] = useState("");
@@ -74,10 +80,16 @@ export default function AdminTestimonialsPage() {
   };
 
   // Aksi Hapus testimoni
-  const handleDelete = async (id: number) => {
-    if (!confirm("Apakah Anda yakin ingin menghapus testimoni ini?")) return;
+  const handleDeleteClick = (id: number) => {
+    setIdToDelete(id);
+    setDeleteDialogOpen(true);
+  };
+
+  const handleConfirmDelete = async () => {
+    if (idToDelete === null) return;
+    setIsDeleting(true);
     try {
-      const res = await testimonialService.delete(id);
+      const res = await testimonialService.delete(idToDelete);
       if (res.success) {
         setSuccess("Testimoni berhasil dihapus!");
         setTimeout(() => setSuccess(""), 3000);
@@ -88,6 +100,10 @@ export default function AdminTestimonialsPage() {
     } catch (err: any) {
       console.error(err);
       setError("Gagal menghapus testimoni.");
+    } finally {
+      setIsDeleting(false);
+      setDeleteDialogOpen(false);
+      setIdToDelete(null);
     }
   };
 
@@ -208,8 +224,8 @@ export default function AdminTestimonialsPage() {
                           <Pencil size={14} weight="bold" />
                         </button>
                         <button
-                          onClick={() => handleDelete(t.id)}
-                          className="p-2 bg-slate-100 hover:bg-red-50 hover:text-white rounded-xl transition-all cursor-pointer text-slate-600"
+                          onClick={() => handleDeleteClick(t.id)}
+                          className="p-2 bg-slate-100 hover:bg-red-500 hover:text-white rounded-xl transition-all cursor-pointer text-slate-600"
                           title="Hapus"
                         >
                           <Trash size={14} weight="bold" />
@@ -324,6 +340,19 @@ export default function AdminTestimonialsPage() {
           </div>
         </div>
       )}
+
+      {/* AlertDialog Kustom untuk konfirmasi hapus */}
+      <AlertDialog
+        isOpen={deleteDialogOpen}
+        onClose={() => {
+          setDeleteDialogOpen(false);
+          setIdToDelete(null);
+        }}
+        onConfirm={handleConfirmDelete}
+        title="Hapus Testimoni"
+        description="Apakah Anda yakin ingin menghapus testimoni ini? Tindakan ini tidak dapat dibatalkan."
+        isLoading={isDeleting}
+      />
     </div>
   );
 }

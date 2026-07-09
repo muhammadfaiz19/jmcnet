@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { faqService } from "@/services/faq.service";
 import type { Faq } from "@/types";
+import { AlertDialog } from "@/components/ui/alert-dialog";
 import {
   Plus,
   Pencil,
@@ -23,6 +24,11 @@ export default function AdminFaqsPage() {
   const [modalOpen, setModalOpen] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
   const [currentId, setCurrentId] = useState<number | null>(null);
+
+  // State untuk delete modal kustom
+  const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
+  const [idToDelete, setIdToDelete] = useState<number | null>(null);
+  const [isDeleting, setIsDeleting] = useState(false);
 
   // Field form
   const [question, setQuestion] = useState("");
@@ -71,10 +77,16 @@ export default function AdminFaqsPage() {
   };
 
   // Aksi Hapus FAQ
-  const handleDelete = async (id: number) => {
-    if (!confirm("Apakah Anda yakin ingin menghapus FAQ ini?")) return;
+  const handleDeleteClick = (id: number) => {
+    setIdToDelete(id);
+    setDeleteDialogOpen(true);
+  };
+
+  const handleConfirmDelete = async () => {
+    if (idToDelete === null) return;
+    setIsDeleting(true);
     try {
-      const res = await faqService.delete(id);
+      const res = await faqService.delete(idToDelete);
       if (res.success) {
         setSuccess("FAQ berhasil dihapus!");
         setTimeout(() => setSuccess(""), 3000);
@@ -85,6 +97,10 @@ export default function AdminFaqsPage() {
     } catch (err: any) {
       console.error(err);
       setError("Gagal menghapus FAQ.");
+    } finally {
+      setIsDeleting(false);
+      setDeleteDialogOpen(false);
+      setIdToDelete(null);
     }
   };
 
@@ -204,7 +220,7 @@ export default function AdminFaqsPage() {
                           <Pencil size={14} weight="bold" />
                         </button>
                         <button
-                          onClick={() => handleDelete(faq.id)}
+                          onClick={() => handleDeleteClick(faq.id)}
                           className="p-2 bg-slate-100 hover:bg-red-500 hover:text-white rounded-xl transition-all cursor-pointer text-slate-600"
                           title="Hapus"
                         >
@@ -305,6 +321,19 @@ export default function AdminFaqsPage() {
           </div>
         </div>
       )}
+
+      {/* AlertDialog Kustom untuk konfirmasi hapus */}
+      <AlertDialog
+        isOpen={deleteDialogOpen}
+        onClose={() => {
+          setDeleteDialogOpen(false);
+          setIdToDelete(null);
+        }}
+        onConfirm={handleConfirmDelete}
+        title="Hapus FAQ"
+        description="Apakah Anda yakin ingin menghapus FAQ ini? Tindakan ini tidak dapat dibatalkan."
+        isLoading={isDeleting}
+      />
     </div>
   );
 }
