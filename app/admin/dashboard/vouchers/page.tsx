@@ -2,7 +2,8 @@
 
 import { useState, useEffect } from "react";
 import { voucherPlanService } from "@/services/voucherPlan.service";
-import type { VoucherPlan } from "@/types";
+import { serviceCategoryService } from "@/services/serviceCategory.service";
+import type { VoucherPlan, ServiceCategory } from "@/types";
 import { AlertDialog } from "@/components/ui/alert-dialog";
 import {
   Plus,
@@ -31,6 +32,7 @@ export default function AdminVouchersPage() {
   const [isDeleting, setIsDeleting] = useState(false);
 
   // Field form
+  const [categoryId, setCategoryId] = useState<number | "">("");
   const [name, setName] = useState("");
   const [type, setType] = useState<"retail" | "reseller">("retail");
   const [tagLabel, setTagLabel] = useState("");
@@ -39,6 +41,7 @@ export default function AdminVouchersPage() {
   const [duration, setDuration] = useState("");
   const [minPurchase, setMinPurchase] = useState("");
   const [features, setFeatures] = useState<string[]>([""]);
+  const [categories, setCategories] = useState<ServiceCategory[]>([]);
 
   const [formLoading, setFormLoading] = useState(false);
 
@@ -58,14 +61,27 @@ export default function AdminVouchersPage() {
     }
   };
 
+  const fetchCategories = async () => {
+    try {
+      const res = await serviceCategoryService.getAll();
+      if (res.data?.success) {
+        setCategories(res.data.data || []);
+      }
+    } catch (err) {
+      console.error("Gagal mengambil kategori:", err);
+    }
+  };
+
   useEffect(() => {
     fetchVouchers();
+    fetchCategories();
   }, []);
 
   // Buka modal untuk tambah voucher baru
   const handleOpenAdd = () => {
     setIsEdit(false);
     setCurrentId(null);
+    setCategoryId("");
     setName("");
     setType("retail");
     setTagLabel("Pengguna Langsung");
@@ -82,6 +98,7 @@ export default function AdminVouchersPage() {
   const handleOpenEdit = (v: VoucherPlan) => {
     setIsEdit(true);
     setCurrentId(v.id);
+    setCategoryId(v.categoryId || "");
     setName(v.name);
     setType(v.type);
     setTagLabel(v.tagLabel);
@@ -170,6 +187,7 @@ export default function AdminVouchersPage() {
     }
 
     const payload = {
+      categoryId: categoryId === "" ? null : Number(categoryId),
       name,
       type,
       tagLabel,
@@ -262,6 +280,7 @@ export default function AdminVouchersPage() {
               <thead>
                 <tr className="bg-slate-50 border-b border-slate-200 text-slate-600 text-[10px] font-extrabold uppercase tracking-wider">
                   <th className="px-6 py-4">Nama Voucher</th>
+                  <th className="px-6 py-4">Kategori</th>
                   <th className="px-6 py-4">Tipe</th>
                   <th className="px-6 py-4">Label Tag</th>
                   <th className="px-6 py-4">Harga</th>
@@ -274,6 +293,11 @@ export default function AdminVouchersPage() {
                 {vouchers.map((v) => (
                   <tr key={v.id} className="hover:bg-slate-50/50 transition-all">
                     <td className="px-6 py-4 font-bold text-slate-900">{v.name}</td>
+                    <td className="px-6 py-4">
+                      <span className="text-xs font-semibold text-slate-600 bg-sky-50 text-sky-800 px-2 py-0.5 rounded">
+                        {v.category?.name || "Tanpa Kategori"}
+                      </span>
+                    </td>
                     <td className="px-6 py-4">
                       <span className={`text-xs font-bold px-2.5 py-1 rounded-full ${
                         v.type === "retail" 
@@ -348,6 +372,25 @@ export default function AdminVouchersPage() {
               )}
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {/* Kategori Layanan */}
+                <div className="sm:col-span-2">
+                  <label className="block text-[11px] uppercase tracking-wider font-extrabold text-slate-700 mb-1.5">
+                    Kategori Layanan
+                  </label>
+                  <select
+                    value={categoryId}
+                    onChange={(e) => setCategoryId(e.target.value === "" ? "" : Number(e.target.value))}
+                    className="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:border-sky-500 focus:bg-white focus:outline-none cursor-pointer"
+                  >
+                    <option value="">-- Tanpa Kategori --</option>
+                    {categories.map((cat) => (
+                      <option key={cat.id} value={cat.id}>
+                        {cat.name}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
                 {/* Nama Voucher */}
                 <div>
                   <label className="block text-[11px] uppercase tracking-wider font-extrabold text-slate-700 mb-1.5">

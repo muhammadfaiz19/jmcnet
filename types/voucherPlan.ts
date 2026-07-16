@@ -1,5 +1,9 @@
+import { ServiceCategory } from "./serviceCategory";
+
 export interface VoucherPlan {
   id: number;
+  categoryId?: number | null;
+  category?: ServiceCategory | null;
   name: string;
   type: "retail" | "reseller";
   tagLabel: string;
