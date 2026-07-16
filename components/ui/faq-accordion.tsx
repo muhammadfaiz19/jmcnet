@@ -99,9 +99,16 @@ export function FAQAccordion({ faqs = [] }: { faqs?: Faq[] }) {
               className="w-full flex items-center justify-between p-5 text-left font-semibold text-slate-800 hover:text-brand-dark transition-colors focus:outline-none"
               aria-expanded={isOpen}
             >
-              <span className="text-base md:text-lg leading-snug">
-                {faq.question}
-              </span>
+              <div className="flex flex-col gap-1 items-start">
+                {(faq as any).category?.name && (
+                  <span className="text-[9px] font-bold text-sky-700 bg-sky-50 px-2 py-0.5 rounded-md uppercase tracking-wider mb-1">
+                    {(faq as any).category.name}
+                  </span>
+                )}
+                <span className="text-base md:text-lg leading-snug">
+                  {faq.question}
+                </span>
+              </div>
               <span
                 className={`ml-4 text-slate-400 p-1 rounded-full bg-slate-50 transition-transform duration-300 ${
                   isOpen ? "rotate-180 text-brand-dark bg-slate-100" : ""

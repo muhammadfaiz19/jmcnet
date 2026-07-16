@@ -19,6 +19,7 @@ import {
   X,
   User,
   ArrowSquareOut,
+  Folders,
 } from "@phosphor-icons/react";
 
 // Struktur data untuk item navigasi sidebar
@@ -30,6 +31,7 @@ interface SidebarItem {
 
 const sidebarItems: SidebarItem[] = [
   { label: "Dashboard", href: "/admin/dashboard", icon: Sliders },
+  { label: "Kategori Layanan", href: "/admin/dashboard/categories", icon: Folders },
   { label: "Paket Internet", href: "/admin/dashboard/packages", icon: Package },
   { label: "Voucher Hotspot", href: "/admin/dashboard/vouchers", icon: Ticket },
   { label: "FAQ", href: "/admin/dashboard/faqs", icon: Question },

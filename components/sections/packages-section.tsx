@@ -78,11 +78,18 @@ export function PackagesSection({
                   )}
 
                   <div className="space-y-6">
-                    <div className="flex items-center justify-between">
+                    <div className="flex items-center justify-between flex-wrap gap-2">
                       <span className="text-[11px] font-mono font-bold tracking-widest uppercase px-3 py-1 rounded-full bg-slate-100 text-slate-700 border border-slate-200/60 whitespace-nowrap" title={pkg.tierLabel}>
                         {pkg.tierLabel}
                       </span>
-                      <span className="text-xs font-bold text-slate-400 shrink-0">{pkg.tierNumber}</span>
+                      <div className="flex items-center gap-2">
+                        {pkg.category?.name && (
+                          <span className="text-[10px] font-extrabold text-brand-dark bg-brand-light/20 border border-brand-dark/20 px-2 py-0.5 rounded-full">
+                            {pkg.category.name}
+                          </span>
+                        )}
+                        <span className="text-xs font-bold text-slate-400 shrink-0">{pkg.tierNumber}</span>
+                      </div>
                     </div>
 
                     <div>
@@ -493,13 +500,24 @@ export function PackagesSection({
                     <div className="space-y-5">
                       <div className="flex items-start justify-between">
                         <div>
-                          <span className={`text-[10px] font-mono font-bold uppercase tracking-widest px-3 py-1 rounded-full border shadow-2xs ${
-                            v.type === "retail"
-                              ? "text-slate-500 bg-white border-slate-200/60"
-                              : "text-brand-light bg-brand-dark/30 border-brand-light/20"
-                          }`}>
-                            {v.tagLabel}
-                          </span>
+                          <div className="flex flex-wrap gap-2">
+                            <span className={`text-[10px] font-mono font-bold uppercase tracking-widest px-3 py-1 rounded-full border shadow-2xs ${
+                              v.type === "retail"
+                                ? "text-slate-500 bg-white border-slate-200/60"
+                                : "text-brand-light bg-brand-dark/30 border-brand-light/20"
+                            }`}>
+                              {v.tagLabel}
+                            </span>
+                            {v.category?.name && (
+                              <span className={`text-[10px] font-bold px-3 py-1 rounded-full border shadow-2xs ${
+                                v.type === "retail"
+                                  ? "text-sky-600 bg-sky-50 border-sky-200/60"
+                                  : "text-brand-light bg-white/10 border-white/10"
+                              }`}>
+                                {v.category.name}
+                              </span>
+                            )}
+                          </div>
                           <h4 className="text-xl font-bold mt-3">{v.name}</h4>
                         </div>
                         <div className={`w-11 h-11 rounded-2xl border flex items-center justify-center shrink-0 ${

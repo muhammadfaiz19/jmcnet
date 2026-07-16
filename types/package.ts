@@ -1,5 +1,9 @@
+import { ServiceCategory } from "./serviceCategory";
+
 export interface Package {
   id: number;
+  categoryId?: number | null;
+  category?: ServiceCategory | null;
   name: string;
   tierLabel: string;
   tierNumber: string;
