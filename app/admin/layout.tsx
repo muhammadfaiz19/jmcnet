@@ -46,9 +46,29 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   const [mobileOpen, setMobileOpen] = useState(false);
   const [adminEmail, setAdminEmail] = useState<string>("");
   const [logo, setLogo] = useState<string>("/logo-removebg.png");
+  const [brandName, setBrandName] = useState<string>("JMCNET");
 
   // Cek apakah sedang berada di halaman login admin
   const isLoginPage = pathname === "/admin/login";
+
+  // Fungsi untuk memuat logo & brandName dari pengaturan situs
+  const fetchSettings = () => {
+    settingsService
+      .get()
+      .then((res) => {
+        if (res.data?.success && res.data.data) {
+          if (res.data.data.logo) {
+            setLogo(res.data.data.logo);
+          }
+          if (res.data.data.brandName) {
+            setBrandName(res.data.data.brandName);
+          }
+        }
+      })
+      .catch((err) => {
+        console.error("Gagal mengambil logo settings di admin layout:", err);
+      });
+  };
 
   // Ambil informasi admin & logo yang sedang login
   useEffect(() => {
@@ -64,16 +84,16 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           console.error("Gagal mengambil profil admin:", err);
         });
 
-      settingsService
-        .get()
-        .then((res) => {
-          if (res.data?.success && res.data.data?.logo) {
-            setLogo(res.data.data.logo);
-          }
-        })
-        .catch((err) => {
-          console.error("Gagal mengambil logo settings di admin layout:", err);
-        });
+      fetchSettings();
+
+      const handleSettingsUpdated = () => {
+        fetchSettings();
+      };
+
+      window.addEventListener("siteSettingsUpdated", handleSettingsUpdated);
+      return () => {
+        window.removeEventListener("siteSettingsUpdated", handleSettingsUpdated);
+      };
     }
   }, [isLoginPage, pathname]);
 
@@ -101,14 +121,16 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           <div className="w-8 h-8 rounded-lg bg-white flex items-center justify-center p-1 shrink-0">
             <Image
               src={logo}
-              alt="JMCNET Logo"
+              alt={`${brandName} Logo`}
               width={24}
               height={24}
               className="object-contain w-auto h-auto max-h-full"
+              unoptimized
+              onError={() => setLogo("/logo-removebg.png")}
             />
           </div>
           <Link href="/admin/dashboard" className="font-bold text-base text-slate-100">
-            JMCNET Backstage
+            {brandName} Backstage
           </Link>
         </div>
         <button
@@ -132,15 +154,17 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
               <div className="w-10 h-10 rounded-xl bg-white flex items-center justify-center p-1.5 shrink-0 shadow-sm border border-white/10">
                 <Image
                   src={logo}
-                  alt="JMCNET Admin Logo"
+                  alt={`${brandName} Admin Logo`}
                   width={32}
                   height={32}
                   className="object-contain w-auto h-auto max-h-full"
+                  unoptimized
+                  onError={() => setLogo("/logo-removebg.png")}
                 />
               </div>
               <div>
                 <Link href="/admin/dashboard" className="font-bold text-base text-slate-100 block leading-tight">
-                  JMCNET Admin
+                  {brandName} Admin
                 </Link>
                 <span className="text-[9px] tracking-widest uppercase text-sky-400 font-bold block mt-0.5">
                   Control Room

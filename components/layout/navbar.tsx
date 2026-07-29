@@ -62,6 +62,7 @@ export function Navbar({ settings }: { settings: SiteSettings | null }) {
               className="h-8 w-auto object-contain"
               style={{ width: "auto" }}
               priority
+              unoptimized
             />
           </Link>
 

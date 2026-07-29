@@ -125,6 +125,9 @@ export default function AdminSettingsPage() {
       if (res.success) {
         setSuccess("Pengaturan situs berhasil diperbarui!");
         
+        // Notify sidebar & layout components that settings updated
+        window.dispatchEvent(new Event("siteSettingsUpdated"));
+
         // Bersihkan input file pilihan
         setLogoFile(null);
         setRegistrationFormFile(null);
