@@ -20,6 +20,7 @@ import {
   User,
   ArrowSquareOut,
   Folders,
+  WarningCircle,
 } from "@phosphor-icons/react";
 
 // Struktur data untuk item navigasi sidebar
@@ -34,6 +35,7 @@ const sidebarItems: SidebarItem[] = [
   { label: "Kategori Layanan", href: "/admin/dashboard/categories", icon: Folders },
   { label: "Paket Internet", href: "/admin/dashboard/packages", icon: Package },
   { label: "Voucher Hotspot", href: "/admin/dashboard/vouchers", icon: Ticket },
+  { label: "Laporan Kendala", href: "/admin/dashboard/reports", icon: WarningCircle },
   { label: "FAQ", href: "/admin/dashboard/faqs", icon: Question },
   { label: "Testimonial", href: "/admin/dashboard/testimonials", icon: ChatCircleText },
   { label: "Chatbot AI", href: "/admin/dashboard/chatbot", icon: Robot },

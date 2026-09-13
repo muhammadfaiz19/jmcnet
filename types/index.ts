@@ -7,3 +7,4 @@ export * from "./testimonial";
 export * from "./settings";
 export * from "./chatbot";
 export * from "./serviceCategory";
+export * from "./report";
