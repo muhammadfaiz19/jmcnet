@@ -34,6 +34,7 @@ export function Navbar({ settings }: { settings: SiteSettings | null }) {
     { label: "Keunggulan", href: "/keunggulan" },
     { label: "Paket Internet", href: "/paket" },
     { label: "Panduan", href: "/panduan-berlangganan" },
+    { label: "Laporan Kendala", href: "/laporan" },
   ];
 
   const isLinkActive = (href: string) => {
